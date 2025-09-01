@@ -1,2 +1,7 @@
-# graph-reasoning-agent
-Experimental framework combining graph-based knowledge representation with LLM-powered reasoning.
+# Graph Reasoning Agent
+
+**Graph Reasoning Agent** is an experimental framework that combines **graph-based knowledge representation** with **LLM-powered reasoning**. It shows how structured knowledge in a graph can guide a language model to reason along explicit relationships, producing **more accurate answers** than relying solely on unstructured data.
+
+Traditional **retrieval-augmented generation (RAG)** relies only on **semantic similarity** to retrieve information from unstructured knowledge. Models based solely on embeddings **ignore relationships, causal links, and hierarchical structures**, which can lead to incomplete or inaccurate answers, as the model may hallucinate, misinterpret connections, or miss subtle dependencies. By integrating a **Knowledge Graph** with an **LLM**, paths through graph nodes are traced to construct reasoning chains, enriching responses with structured relationships and related knowledge for **more precise, contextually grounded answers**.
+
+This project is a **Minimum Viable Product (MVP)**, demonstrating the concept of combining **LLM reasoning with graph-structured knowledge**. It aims to leverage **LLM capabilities for domain-specific tasks**, enabling accurate responses in **local or specialized contexts**. By combining structured knowledge with generative reasoning, this approach offers **more reliable and relevant answers for niche applications** and serves as a foundation for future experiments and extensions.
