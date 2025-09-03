@@ -6,7 +6,7 @@ Traditional **retrieval-augmented generation (RAG)** relies only on **semantic s
 
 This project is a **Minimum Viable Product (MVP)**, demonstrating the concept of combining **LLM reasoning with graph-structured knowledge**. It aims to leverage **LLM capabilities for domain-specific tasks**, enabling accurate responses in **local or specialized contexts**. By combining structured knowledge with generative reasoning, this approach offers **more reliable and relevant answers for niche applications** and serves as a foundation for future experiments and extensions.
 
-# Overview  
+## Overview  
 
 This project implements an **AI agent** for questions about **petshops**, **socioeconomic data of neighborhoods**, and **road networks from OpenStreetMap (OSM)** in Santo André. The master agent receives a user question and determines which of the two sub-agents will handle it:
 
@@ -27,3 +27,12 @@ This project implements an **AI agent** for questions about **petshops**, **soci
 The **master agent** ensures that each question is routed to the appropriate sub-agent, choosing the Cypher RAG Agent for **direct, structured queries in Neo4j** and the Navigator Graph Agent for **complex or nuanced questions in PyG**.  
 
 **Note**: The agent only answers questions that fall within the **knowledge encoded in the graph** and associated textual data, so questions outside this domain may not be answered accurately.
+
+## Target Audience
+
+- Developers and AI practitioners
+- Researchers in knowledge graphs and LLMs
+- Data scientists working with structured and unstructured data
+- Anyone interested in domain-specific AI applications
+
+---
