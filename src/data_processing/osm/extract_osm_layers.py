@@ -21,7 +21,7 @@ import os
 import osmnx as ox
 import geopandas as gpd
 from typing import Dict, Union, Optional, List, Tuple
-from config.paths import RAW_SANTO_ANDRE_OSM_DIR
+from config.paths import PROCESSED_SANTO_ANDRE_OSM_DIR
 from config.constants import LAYERS_TO_EXTRACT
 
 # ==============================
@@ -134,7 +134,7 @@ def run_pipeline():
     5. Save all layers into a single GeoPackage file.
     """
     place_name = "Santo André, São Paulo, Brazil"
-    output_gpkg = os.path.join(RAW_SANTO_ANDRE_OSM_DIR, "santo_andre_osm_layers.gpkg")
+    output_gpkg = os.path.join(PROCESSED_SANTO_ANDRE_OSM_DIR, "santo_andre_osm_layers.gpkg")
 
     # Remove old GeoPackage file if it exists
     if os.path.exists(output_gpkg):
