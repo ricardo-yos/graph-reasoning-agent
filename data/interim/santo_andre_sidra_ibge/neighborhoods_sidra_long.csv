@@ -1,0 +1,655 @@
+Neighborhood_ID;Neighborhood;Variable;Year;Value
+3547809001;Tamanduateí 2;Literacy_Rate;2010;95.9
+3547809001;Tamanduateí 2;Total_Private_Households;2010;1279
+3547809001;Tamanduateí 2;Total_Resident_Population;2010;3830
+3547809001;Tamanduateí 2;Population_with_Income;2010;2174
+3547809001;Tamanduateí 2;Average_Monthly_Income;2010;2332.17
+3547809001;Tamanduateí 2;Total_Literate_Population;2010;3423
+3547809002;Vila Metalúrgica;Literacy_Rate;2010;97.9
+3547809002;Vila Metalúrgica;Total_Private_Households;2010;3692
+3547809002;Vila Metalúrgica;Total_Resident_Population;2010;10964
+3547809002;Vila Metalúrgica;Population_with_Income;2010;6948
+3547809002;Vila Metalúrgica;Average_Monthly_Income;2010;1552.14
+3547809002;Vila Metalúrgica;Total_Literate_Population;2010;10453
+3547809003;Vila Camilópolis;Literacy_Rate;2010;98.5
+3547809003;Vila Camilópolis;Total_Private_Households;2010;5484
+3547809003;Vila Camilópolis;Total_Resident_Population;2010;16733
+3547809003;Vila Camilópolis;Population_with_Income;2010;10315
+3547809003;Vila Camilópolis;Average_Monthly_Income;2010;1699.73
+3547809003;Vila Camilópolis;Total_Literate_Population;2010;15946
+3547809004;Jardim Utinga;Literacy_Rate;2010;97.3
+3547809004;Jardim Utinga;Total_Private_Households;2010;1462
+3547809004;Jardim Utinga;Total_Resident_Population;2010;4578
+3547809004;Jardim Utinga;Population_with_Income;2010;2747
+3547809004;Jardim Utinga;Average_Monthly_Income;2010;1267.53
+3547809004;Jardim Utinga;Total_Literate_Population;2010;4344
+3547809005;Jardim das Maravilhas;Literacy_Rate;2010;97.5
+3547809005;Jardim das Maravilhas;Total_Private_Households;2010;1508
+3547809005;Jardim das Maravilhas;Total_Resident_Population;2010;4794
+3547809005;Jardim das Maravilhas;Population_with_Income;2010;2885
+3547809005;Jardim das Maravilhas;Average_Monthly_Income;2010;1317.66
+3547809005;Jardim das Maravilhas;Total_Literate_Population;2010;4545
+3547809006;Vila Lucinda;Literacy_Rate;2010;97.8
+3547809006;Vila Lucinda;Total_Private_Households;2010;2027
+3547809006;Vila Lucinda;Total_Resident_Population;2010;6125
+3547809006;Vila Lucinda;Population_with_Income;2010;3591
+3547809006;Vila Lucinda;Average_Monthly_Income;2010;1400.34
+3547809006;Vila Lucinda;Total_Literate_Population;2010;5809
+3547809007;Jardim Santo Antônio;Literacy_Rate;2010;97.9
+3547809007;Jardim Santo Antônio;Total_Private_Households;2010;2902
+3547809007;Jardim Santo Antônio;Total_Resident_Population;2010;9036
+3547809007;Jardim Santo Antônio;Population_with_Income;2010;5577
+3547809007;Jardim Santo Antônio;Average_Monthly_Income;2010;1484.02
+3547809007;Jardim Santo Antônio;Total_Literate_Population;2010;8603
+3547809008;Vila Francisco Matarazzo;Literacy_Rate;2010;97.9
+3547809008;Vila Francisco Matarazzo;Total_Private_Households;2010;1454
+3547809008;Vila Francisco Matarazzo;Total_Resident_Population;2010;4433
+3547809008;Vila Francisco Matarazzo;Population_with_Income;2010;2816
+3547809008;Vila Francisco Matarazzo;Average_Monthly_Income;2010;1547.40
+3547809008;Vila Francisco Matarazzo;Total_Literate_Population;2010;4236
+3547809009;Parque Oratório;Literacy_Rate;2010;98.7
+3547809009;Parque Oratório;Total_Private_Households;2010;3700
+3547809009;Parque Oratório;Total_Resident_Population;2010;11564
+3547809009;Parque Oratório;Population_with_Income;2010;7018
+3547809009;Parque Oratório;Average_Monthly_Income;2010;1518.62
+3547809009;Parque Oratório;Total_Literate_Population;2010;11075
+3547809010;Parque das Nações;Literacy_Rate;2010;98.3
+3547809010;Parque das Nações;Total_Private_Households;2010;4932
+3547809010;Parque das Nações;Total_Resident_Population;2010;14547
+3547809010;Parque das Nações;Population_with_Income;2010;9285
+3547809010;Parque das Nações;Average_Monthly_Income;2010;1947.46
+3547809010;Parque das Nações;Total_Literate_Population;2010;13902
+3547809011;Santa Terezinha;Literacy_Rate;2010;98.9
+3547809011;Santa Terezinha;Total_Private_Households;2010;2089
+3547809011;Santa Terezinha;Total_Resident_Population;2010;5987
+3547809011;Santa Terezinha;Population_with_Income;2010;3990
+3547809011;Santa Terezinha;Average_Monthly_Income;2010;2082.70
+3547809011;Santa Terezinha;Total_Literate_Population;2010;5706
+3547809012;Tamanduateí 4;Literacy_Rate;2010;94.1
+3547809012;Tamanduateí 4;Total_Private_Households;2010;847
+3547809012;Tamanduateí 4;Total_Resident_Population;2010;2692
+3547809012;Tamanduateí 4;Population_with_Income;2010;1608
+3547809012;Tamanduateí 4;Average_Monthly_Income;2010;976.53
+3547809012;Tamanduateí 4;Total_Literate_Population;2010;2483
+3547809013;Tamanduateí 1;Literacy_Rate;2010;98.8
+3547809013;Tamanduateí 1;Total_Private_Households;2010;323
+3547809013;Tamanduateí 1;Total_Resident_Population;2010;1036
+3547809013;Tamanduateí 1;Population_with_Income;2010;587
+3547809013;Tamanduateí 1;Average_Monthly_Income;2010;1835.83
+3547809013;Tamanduateí 1;Total_Literate_Population;2010;975
+3547809014;Campestre;Literacy_Rate;2010;99.1
+3547809014;Campestre;Total_Private_Households;2010;4985
+3547809014;Campestre;Total_Resident_Population;2010;14249
+3547809014;Campestre;Population_with_Income;2010;9277
+3547809014;Campestre;Average_Monthly_Income;2010;2956.62
+3547809014;Campestre;Total_Literate_Population;2010;13619
+3547809015;Tamanduateí 3;Literacy_Rate;2010;99.5
+3547809015;Tamanduateí 3;Total_Private_Households;2010;281
+3547809015;Tamanduateí 3;Total_Resident_Population;2010;851
+3547809015;Tamanduateí 3;Population_with_Income;2010;541
+3547809015;Tamanduateí 3;Average_Monthly_Income;2010;5462.28
+3547809015;Tamanduateí 3;Total_Literate_Population;2010;804
+3547809016;Bangú;Literacy_Rate;2010;98.2
+3547809016;Bangú;Total_Private_Households;2010;1391
+3547809016;Bangú;Total_Resident_Population;2010;4101
+3547809016;Bangú;Population_with_Income;2010;2682
+3547809016;Bangú;Average_Monthly_Income;2010;2250.72
+3547809016;Bangú;Total_Literate_Population;2010;3934
+3547809017;Tamanduateí 5;Literacy_Rate;2010;X
+3547809017;Tamanduateí 5;Total_Private_Households;2010;..
+3547809017;Tamanduateí 5;Total_Resident_Population;2010;3
+3547809017;Tamanduateí 5;Population_with_Income;2010;X
+3547809017;Tamanduateí 5;Average_Monthly_Income;2010;X
+3547809017;Tamanduateí 5;Total_Literate_Population;2010;..
+3547809018;Jardim;Literacy_Rate;2010;99.5
+3547809018;Jardim;Total_Private_Households;2010;2851
+3547809018;Jardim;Total_Resident_Population;2010;8034
+3547809018;Jardim;Population_with_Income;2010;5274
+3547809018;Jardim;Average_Monthly_Income;2010;5850.56
+3547809018;Jardim;Total_Literate_Population;2010;7684
+3547809019;Santa Maria;Literacy_Rate;2010;97.9
+3547809019;Santa Maria;Total_Private_Households;2010;1506
+3547809019;Santa Maria;Total_Resident_Population;2010;4636
+3547809019;Santa Maria;Population_with_Income;2010;3062
+3547809019;Santa Maria;Average_Monthly_Income;2010;2050.13
+3547809019;Santa Maria;Total_Literate_Population;2010;4465
+3547809020;Vila Palmares;Literacy_Rate;2010;96.9
+3547809020;Vila Palmares;Total_Private_Households;2010;4619
+3547809020;Vila Palmares;Total_Resident_Population;2010;14641
+3547809020;Vila Palmares;Population_with_Income;2010;8337
+3547809020;Vila Palmares;Average_Monthly_Income;2010;1229.89
+3547809020;Vila Palmares;Total_Literate_Population;2010;13768
+3547809021;Vila Sacadura Cabral;Literacy_Rate;2010;95.6
+3547809021;Vila Sacadura Cabral;Total_Private_Households;2010;3167
+3547809021;Vila Sacadura Cabral;Total_Resident_Population;2010;11374
+3547809021;Vila Sacadura Cabral;Population_with_Income;2010;5846
+3547809021;Vila Sacadura Cabral;Average_Monthly_Income;2010;1140.03
+3547809021;Vila Sacadura Cabral;Total_Literate_Population;2010;10718
+3547809022;Vila Alpina;Literacy_Rate;2010;99.2
+3547809022;Vila Alpina;Total_Private_Households;2010;533
+3547809022;Vila Alpina;Total_Resident_Population;2010;1590
+3547809022;Vila Alpina;Population_with_Income;2010;1070
+3547809022;Vila Alpina;Average_Monthly_Income;2010;2694.99
+3547809022;Vila Alpina;Total_Literate_Population;2010;1539
+3547809023;Vila Guiomar;Literacy_Rate;2010;98.6
+3547809023;Vila Guiomar;Total_Private_Households;2010;2315
+3547809023;Vila Guiomar;Total_Resident_Population;2010;6406
+3547809023;Vila Guiomar;Population_with_Income;2010;4450
+3547809023;Vila Guiomar;Average_Monthly_Income;2010;2204.17
+3547809023;Vila Guiomar;Total_Literate_Population;2010;6142
+3547809024;Centro;Literacy_Rate;2010;98.9
+3547809024;Centro;Total_Private_Households;2010;1478
+3547809024;Centro;Total_Resident_Population;2010;3621
+3547809024;Centro;Population_with_Income;2010;2697
+3547809024;Centro;Average_Monthly_Income;2010;2916.32
+3547809024;Centro;Total_Literate_Population;2010;3532
+3547809025;Casa Branca;Literacy_Rate;2010;98.9
+3547809025;Casa Branca;Total_Private_Households;2010;853
+3547809025;Casa Branca;Total_Resident_Population;2010;2282
+3547809025;Casa Branca;Population_with_Income;2010;1524
+3547809025;Casa Branca;Average_Monthly_Income;2010;2485.95
+3547809025;Casa Branca;Total_Literate_Population;2010;2195
+3547809026;Tamanduateí 7;Literacy_Rate;2010;99.5
+3547809026;Tamanduateí 7;Total_Private_Households;2010;603
+3547809026;Tamanduateí 7;Total_Resident_Population;2010;1740
+3547809026;Tamanduateí 7;Population_with_Income;2010;1070
+3547809026;Tamanduateí 7;Average_Monthly_Income;2010;2686.82
+3547809026;Tamanduateí 7;Total_Literate_Population;2010;1577
+3547809027;Parque Marajoara;Literacy_Rate;2010;98.7
+3547809027;Parque Marajoara;Total_Private_Households;2010;2449
+3547809027;Parque Marajoara;Total_Resident_Population;2010;8107
+3547809027;Parque Marajoara;Population_with_Income;2010;4819
+3547809027;Parque Marajoara;Average_Monthly_Income;2010;1722.64
+3547809027;Parque Marajoara;Total_Literate_Population;2010;7721
+3547809028;Vila Homero Thon;Literacy_Rate;2010;98.2
+3547809028;Vila Homero Thon;Total_Private_Households;2010;1805
+3547809028;Vila Homero Thon;Total_Resident_Population;2010;5200
+3547809028;Vila Homero Thon;Population_with_Income;2010;3256
+3547809028;Vila Homero Thon;Average_Monthly_Income;2010;2017.85
+3547809028;Vila Homero Thon;Total_Literate_Population;2010;4904
+3547809029;Vila América;Literacy_Rate;2010;98.7
+3547809029;Vila América;Total_Private_Households;2010;1495
+3547809029;Vila América;Total_Resident_Population;2010;4335
+3547809029;Vila América;Population_with_Income;2010;2850
+3547809029;Vila América;Average_Monthly_Income;2010;1800.13
+3547809029;Vila América;Total_Literate_Population;2010;4145
+3547809030;Bairro Silveira;Literacy_Rate;2010;98.9
+3547809030;Bairro Silveira;Total_Private_Households;2010;1006
+3547809030;Bairro Silveira;Total_Resident_Population;2010;2810
+3547809030;Bairro Silveira;Population_with_Income;2010;1839
+3547809030;Bairro Silveira;Average_Monthly_Income;2010;2282.87
+3547809030;Bairro Silveira;Total_Literate_Population;2010;2672
+3547809031;Vila Alzira;Literacy_Rate;2010;98.7
+3547809031;Vila Alzira;Total_Private_Households;2010;2608
+3547809031;Vila Alzira;Total_Resident_Population;2010;7456
+3547809031;Vila Alzira;Population_with_Income;2010;4868
+3547809031;Vila Alzira;Average_Monthly_Income;2010;2039.95
+3547809031;Vila Alzira;Total_Literate_Population;2010;7159
+3547809032;Vila Assunção;Literacy_Rate;2010;99.1
+3547809032;Vila Assunção;Total_Private_Households;2010;5142
+3547809032;Vila Assunção;Total_Resident_Population;2010;14182
+3547809032;Vila Assunção;Population_with_Income;2010;9273
+3547809032;Vila Assunção;Average_Monthly_Income;2010;3580.41
+3547809032;Vila Assunção;Total_Literate_Population;2010;13613
+3547809033;Vila Bastos;Literacy_Rate;2010;99.7
+3547809033;Vila Bastos;Total_Private_Households;2010;2020
+3547809033;Vila Bastos;Total_Resident_Population;2010;5655
+3547809033;Vila Bastos;Population_with_Income;2010;3660
+3547809033;Vila Bastos;Average_Monthly_Income;2010;5245.41
+3547809033;Vila Bastos;Total_Literate_Population;2010;5443
+3547809034;Jardim Bela Vista;Literacy_Rate;2010;99.5
+3547809034;Jardim Bela Vista;Total_Private_Households;2010;2795
+3547809034;Jardim Bela Vista;Total_Resident_Population;2010;7317
+3547809034;Jardim Bela Vista;Population_with_Income;2010;4972
+3547809034;Jardim Bela Vista;Average_Monthly_Income;2010;3966.23
+3547809034;Jardim Bela Vista;Total_Literate_Population;2010;6987
+3547809035;Vila Alice;Literacy_Rate;2010;98.6
+3547809035;Vila Alice;Total_Private_Households;2010;882
+3547809035;Vila Alice;Total_Resident_Population;2010;2475
+3547809035;Vila Alice;Population_with_Income;2010;1583
+3547809035;Vila Alice;Average_Monthly_Income;2010;2922.01
+3547809035;Vila Alice;Total_Literate_Population;2010;2385
+3547809036;Vila Príncipe de Gales;Literacy_Rate;2010;94.4
+3547809036;Vila Príncipe de Gales;Total_Private_Households;2010;3040
+3547809036;Vila Príncipe de Gales;Total_Resident_Population;2010;10220
+3547809036;Vila Príncipe de Gales;Population_with_Income;2010;5462
+3547809036;Vila Príncipe de Gales;Average_Monthly_Income;2010;1253.79
+3547809036;Vila Príncipe de Gales;Total_Literate_Population;2010;9392
+3547809037;Vila Valparaíso;Literacy_Rate;2010;99.0
+3547809037;Vila Valparaíso;Total_Private_Households;2010;3215
+3547809037;Vila Valparaíso;Total_Resident_Population;2010;9131
+3547809037;Vila Valparaíso;Population_with_Income;2010;5907
+3547809037;Vila Valparaíso;Average_Monthly_Income;2010;3039.53
+3547809037;Vila Valparaíso;Total_Literate_Population;2010;8602
+3547809038;Vila Floresta;Literacy_Rate;2010;98.6
+3547809038;Vila Floresta;Total_Private_Households;2010;2312
+3547809038;Vila Floresta;Total_Resident_Population;2010;6856
+3547809038;Vila Floresta;Population_with_Income;2010;4355
+3547809038;Vila Floresta;Average_Monthly_Income;2010;2110.65
+3547809038;Vila Floresta;Total_Literate_Population;2010;6529
+3547809039;Vila Gilda;Literacy_Rate;2010;99.4
+3547809039;Vila Gilda;Total_Private_Households;2010;2118
+3547809039;Vila Gilda;Total_Resident_Population;2010;5964
+3547809039;Vila Gilda;Population_with_Income;2010;3997
+3547809039;Vila Gilda;Average_Monthly_Income;2010;3732.38
+3547809039;Vila Gilda;Total_Literate_Population;2010;5621
+3547809040;Paraíso;Literacy_Rate;2010;96.8
+3547809040;Paraíso;Total_Private_Households;2010;1285
+3547809040;Paraíso;Total_Resident_Population;2010;4114
+3547809040;Paraíso;Population_with_Income;2010;2307
+3547809040;Paraíso;Average_Monthly_Income;2010;1549.10
+3547809040;Paraíso;Total_Literate_Population;2010;3833
+3547809041;Vila Pires;Literacy_Rate;2010;99.0
+3547809041;Vila Pires;Total_Private_Households;2010;3413
+3547809041;Vila Pires;Total_Resident_Population;2010;9879
+3547809041;Vila Pires;Population_with_Income;2010;6437
+3547809041;Vila Pires;Average_Monthly_Income;2010;2287.08
+3547809041;Vila Pires;Total_Literate_Population;2010;9423
+3547809042;Vila Humaitá;Literacy_Rate;2010;98.5
+3547809042;Vila Humaitá;Total_Private_Households;2010;1533
+3547809042;Vila Humaitá;Total_Resident_Population;2010;4568
+3547809042;Vila Humaitá;Population_with_Income;2010;2844
+3547809042;Vila Humaitá;Average_Monthly_Income;2010;1545.46
+3547809042;Vila Humaitá;Total_Literate_Population;2010;4339
+3547809043;Vila Guarani;Literacy_Rate;2010;96.5
+3547809043;Vila Guarani;Total_Private_Households;2010;1232
+3547809043;Vila Guarani;Total_Resident_Population;2010;3952
+3547809043;Vila Guarani;Population_with_Income;2010;2288
+3547809043;Vila Guarani;Average_Monthly_Income;2010;1103.97
+3547809043;Vila Guarani;Total_Literate_Population;2010;3740
+3547809044;Jardim Marek;Literacy_Rate;2010;98.1
+3547809044;Jardim Marek;Total_Private_Households;2010;1746
+3547809044;Jardim Marek;Total_Resident_Population;2010;5886
+3547809044;Jardim Marek;Population_with_Income;2010;3472
+3547809044;Jardim Marek;Average_Monthly_Income;2010;1317.93
+3547809044;Jardim Marek;Total_Literate_Population;2010;5560
+3547809045;Cidade São Jorge;Literacy_Rate;2010;95.0
+3547809045;Cidade São Jorge;Total_Private_Households;2010;4766
+3547809045;Cidade São Jorge;Total_Resident_Population;2010;15454
+3547809045;Cidade São Jorge;Population_with_Income;2010;8583
+3547809045;Cidade São Jorge;Average_Monthly_Income;2010;1075.30
+3547809045;Cidade São Jorge;Total_Literate_Population;2010;14231
+3547809046;Parque Gerassi;Literacy_Rate;2010;96.6
+3547809046;Parque Gerassi;Total_Private_Households;2010;2311
+3547809046;Parque Gerassi;Total_Resident_Population;2010;8066
+3547809046;Parque Gerassi;Population_with_Income;2010;4365
+3547809046;Parque Gerassi;Average_Monthly_Income;2010;1139.71
+3547809046;Parque Gerassi;Total_Literate_Population;2010;7584
+3547809047;Vila Progresso;Literacy_Rate;2010;97.8
+3547809047;Vila Progresso;Total_Private_Households;2010;1642
+3547809047;Vila Progresso;Total_Resident_Population;2010;5190
+3547809047;Vila Progresso;Population_with_Income;2010;3115
+3547809047;Vila Progresso;Average_Monthly_Income;2010;1288.81
+3547809047;Vila Progresso;Total_Literate_Population;2010;4903
+3547809048;Vila Helena;Literacy_Rate;2010;98.3
+3547809048;Vila Helena;Total_Private_Households;2010;4051
+3547809048;Vila Helena;Total_Resident_Population;2010;11915
+3547809048;Vila Helena;Population_with_Income;2010;7208
+3547809048;Vila Helena;Average_Monthly_Income;2010;1606.88
+3547809048;Vila Helena;Total_Literate_Population;2010;11362
+3547809049;Vila Scarpelli;Literacy_Rate;2010;98.3
+3547809049;Vila Scarpelli;Total_Private_Households;2010;1974
+3547809049;Vila Scarpelli;Total_Resident_Population;2010;6220
+3547809049;Vila Scarpelli;Population_with_Income;2010;3887
+3547809049;Vila Scarpelli;Average_Monthly_Income;2010;2098.86
+3547809049;Vila Scarpelli;Total_Literate_Population;2010;5945
+3547809050;Jardim Bom Pastor;Literacy_Rate;2010;97.6
+3547809050;Jardim Bom Pastor;Total_Private_Households;2010;1903
+3547809050;Jardim Bom Pastor;Total_Resident_Population;2010;5942
+3547809050;Jardim Bom Pastor;Population_with_Income;2010;3809
+3547809050;Jardim Bom Pastor;Average_Monthly_Income;2010;1563.13
+3547809050;Jardim Bom Pastor;Total_Literate_Population;2010;5653
+3547809051;Jardim Stella;Literacy_Rate;2010;98.6
+3547809051;Jardim Stella;Total_Private_Households;2010;3863
+3547809051;Jardim Stella;Total_Resident_Population;2010;11528
+3547809051;Jardim Stella;Population_with_Income;2010;7130
+3547809051;Jardim Stella;Average_Monthly_Income;2010;2103.45
+3547809051;Jardim Stella;Total_Literate_Population;2010;10926
+3547809052;Jardim Cristiane;Literacy_Rate;2010;96.5
+3547809052;Jardim Cristiane;Total_Private_Households;2010;3665
+3547809052;Jardim Cristiane;Total_Resident_Population;2010;11886
+3547809052;Jardim Cristiane;Population_with_Income;2010;6975
+3547809052;Jardim Cristiane;Average_Monthly_Income;2010;1174.89
+3547809052;Jardim Cristiane;Total_Literate_Population;2010;11152
+3547809053;Vila Linda;Literacy_Rate;2010;97.0
+3547809053;Vila Linda;Total_Private_Households;2010;2957
+3547809053;Vila Linda;Total_Resident_Population;2010;9286
+3547809053;Vila Linda;Population_with_Income;2010;5572
+3547809053;Vila Linda;Average_Monthly_Income;2010;1359.04
+3547809053;Vila Linda;Total_Literate_Population;2010;8849
+3547809054;Vila Junqueira;Literacy_Rate;2010;98.1
+3547809054;Vila Junqueira;Total_Private_Households;2010;1270
+3547809054;Vila Junqueira;Total_Resident_Population;2010;4117
+3547809054;Vila Junqueira;Population_with_Income;2010;2338
+3547809054;Vila Junqueira;Average_Monthly_Income;2010;1502.66
+3547809054;Vila Junqueira;Total_Literate_Population;2010;3942
+3547809055;Jardim Ipanema;Literacy_Rate;2010;96.8
+3547809055;Jardim Ipanema;Total_Private_Households;2010;1855
+3547809055;Jardim Ipanema;Total_Resident_Population;2010;6036
+3547809055;Jardim Ipanema;Population_with_Income;2010;3413
+3547809055;Jardim Ipanema;Average_Monthly_Income;2010;1292.90
+3547809055;Jardim Ipanema;Total_Literate_Population;2010;5677
+3547809056;Vila Guaraciaba;Literacy_Rate;2010;97.3
+3547809056;Vila Guaraciaba;Total_Private_Households;2010;1160
+3547809056;Vila Guaraciaba;Total_Resident_Population;2010;3763
+3547809056;Vila Guaraciaba;Population_with_Income;2010;2171
+3547809056;Vila Guaraciaba;Average_Monthly_Income;2010;1192.54
+3547809056;Vila Guaraciaba;Total_Literate_Population;2010;3549
+3547809057;Condomínio Maracanã;Literacy_Rate;2010;95.8
+3547809057;Condomínio Maracanã;Total_Private_Households;2010;2894
+3547809057;Condomínio Maracanã;Total_Resident_Population;2010;10029
+3547809057;Condomínio Maracanã;Population_with_Income;2010;5128
+3547809057;Condomínio Maracanã;Average_Monthly_Income;2010;1006.28
+3547809057;Condomínio Maracanã;Total_Literate_Population;2010;9298
+3547809058;Vila Tibiriçá;Literacy_Rate;2010;97.9
+3547809058;Vila Tibiriçá;Total_Private_Households;2010;786
+3547809058;Vila Tibiriçá;Total_Resident_Population;2010;2517
+3547809058;Vila Tibiriçá;Population_with_Income;2010;1585
+3547809058;Vila Tibiriçá;Average_Monthly_Income;2010;1454.12
+3547809058;Vila Tibiriçá;Total_Literate_Population;2010;2392
+3547809059;Vila Suíça;Literacy_Rate;2010;96.1
+3547809059;Vila Suíça;Total_Private_Households;2010;3266
+3547809059;Vila Suíça;Total_Resident_Population;2010;10548
+3547809059;Vila Suíça;Population_with_Income;2010;5916
+3547809059;Vila Suíça;Average_Monthly_Income;2010;1048.17
+3547809059;Vila Suíça;Total_Literate_Population;2010;9806
+3547809060;Vila Lutécia;Literacy_Rate;2010;98.5
+3547809060;Vila Lutécia;Total_Private_Households;2010;1275
+3547809060;Vila Lutécia;Total_Resident_Population;2010;3714
+3547809060;Vila Lutécia;Population_with_Income;2010;2304
+3547809060;Vila Lutécia;Average_Monthly_Income;2010;1668.03
+3547809060;Vila Lutécia;Total_Literate_Population;2010;3449
+3547809061;Jardim Santa Cristina;Literacy_Rate;2010;96.7
+3547809061;Jardim Santa Cristina;Total_Private_Households;2010;4870
+3547809061;Jardim Santa Cristina;Total_Resident_Population;2010;15819
+3547809061;Jardim Santa Cristina;Population_with_Income;2010;8451
+3547809061;Jardim Santa Cristina;Average_Monthly_Income;2010;1267.75
+3547809061;Jardim Santa Cristina;Total_Literate_Population;2010;14681
+3547809062;Jardim do Estádio;Literacy_Rate;2010;97.0
+3547809062;Jardim do Estádio;Total_Private_Households;2010;3827
+3547809062;Jardim do Estádio;Total_Resident_Population;2010;12598
+3547809062;Jardim do Estádio;Population_with_Income;2010;7157
+3547809062;Jardim do Estádio;Average_Monthly_Income;2010;1143.06
+3547809062;Jardim do Estádio;Total_Literate_Population;2010;11865
+3547809063;Jardim Alvorada;Literacy_Rate;2010;98.4
+3547809063;Jardim Alvorada;Total_Private_Households;2010;3987
+3547809063;Jardim Alvorada;Total_Resident_Population;2010;11599
+3547809063;Jardim Alvorada;Population_with_Income;2010;7448
+3547809063;Jardim Alvorada;Average_Monthly_Income;2010;1431.70
+3547809063;Jardim Alvorada;Total_Literate_Population;2010;10959
+3547809064;Jardim Las Vegas;Literacy_Rate;2010;97.4
+3547809064;Jardim Las Vegas;Total_Private_Households;2010;3307
+3547809064;Jardim Las Vegas;Total_Resident_Population;2010;11214
+3547809064;Jardim Las Vegas;Population_with_Income;2010;6217
+3547809064;Jardim Las Vegas;Average_Monthly_Income;2010;1573.39
+3547809064;Jardim Las Vegas;Total_Literate_Population;2010;10551
+3547809065;Sítio dos Vianas;Literacy_Rate;2010;95.2
+3547809065;Sítio dos Vianas;Total_Private_Households;2010;3402
+3547809065;Sítio dos Vianas;Total_Resident_Population;2010;11484
+3547809065;Sítio dos Vianas;Population_with_Income;2010;6078
+3547809065;Sítio dos Vianas;Average_Monthly_Income;2010;861.77
+3547809065;Sítio dos Vianas;Total_Literate_Population;2010;10503
+3547809066;Vila Luzita;Literacy_Rate;2010;96.9
+3547809066;Vila Luzita;Total_Private_Households;2010;3584
+3547809066;Vila Luzita;Total_Resident_Population;2010;11387
+3547809066;Vila Luzita;Population_with_Income;2010;6704
+3547809066;Vila Luzita;Average_Monthly_Income;2010;1264.61
+3547809066;Vila Luzita;Total_Literate_Population;2010;10694
+3547809067;Jardim Santo André;Literacy_Rate;2010;97.3
+3547809067;Jardim Santo André;Total_Private_Households;2010;3227
+3547809067;Jardim Santo André;Total_Resident_Population;2010;10439
+3547809067;Jardim Santo André;Population_with_Income;2010;5718
+3547809067;Jardim Santo André;Average_Monthly_Income;2010;1282.36
+3547809067;Jardim Santo André;Total_Literate_Population;2010;9716
+3547809068;Parque dos Pássaros;Literacy_Rate;2010;94.0
+3547809068;Parque dos Pássaros;Total_Private_Households;2010;6361
+3547809068;Parque dos Pássaros;Total_Resident_Population;2010;22828
+3547809068;Parque dos Pássaros;Population_with_Income;2010;10475
+3547809068;Parque dos Pássaros;Average_Monthly_Income;2010;740.07
+3547809068;Parque dos Pássaros;Total_Literate_Population;2010;20792
+3547809069;Jardim Irene;Literacy_Rate;2010;97.6
+3547809069;Jardim Irene;Total_Private_Households;2010;2423
+3547809069;Jardim Irene;Total_Resident_Population;2010;7980
+3547809069;Jardim Irene;Population_with_Income;2010;4408
+3547809069;Jardim Irene;Average_Monthly_Income;2010;1102.18
+3547809069;Jardim Irene;Total_Literate_Population;2010;7397
+3547809070;Jardim João Ramalho;Literacy_Rate;2010;97.6
+3547809070;Jardim João Ramalho;Total_Private_Households;2010;2261
+3547809070;Jardim João Ramalho;Total_Resident_Population;2010;7471
+3547809070;Jardim João Ramalho;Population_with_Income;2010;4141
+3547809070;Jardim João Ramalho;Average_Monthly_Income;2010;1173.51
+3547809070;Jardim João Ramalho;Total_Literate_Population;2010;6975
+3547809071;Cata Preta;Literacy_Rate;2010;93.1
+3547809071;Cata Preta;Total_Private_Households;2010;3146
+3547809071;Cata Preta;Total_Resident_Population;2010;11606
+3547809071;Cata Preta;Population_with_Income;2010;5413
+3547809071;Cata Preta;Average_Monthly_Income;2010;773.68
+3547809071;Cata Preta;Total_Literate_Population;2010;10408
+3547809072;Parque do Pedroso;Literacy_Rate;2010;94.6
+3547809072;Parque do Pedroso;Total_Private_Households;2010;471
+3547809072;Parque do Pedroso;Total_Resident_Population;2010;1734
+3547809072;Parque do Pedroso;Population_with_Income;2010;755
+3547809072;Parque do Pedroso;Average_Monthly_Income;2010;852.13
+3547809072;Parque do Pedroso;Total_Literate_Population;2010;1597
+3547809073;Recreio da Borda do Campo;Literacy_Rate;2010;96.6
+3547809073;Recreio da Borda do Campo;Total_Private_Households;2010;3138
+3547809073;Recreio da Borda do Campo;Total_Resident_Population;2010;10728
+3547809073;Recreio da Borda do Campo;Population_with_Income;2010;5487
+3547809073;Recreio da Borda do Campo;Average_Monthly_Income;2010;981.01
+3547809073;Recreio da Borda do Campo;Total_Literate_Population;2010;9965
+3547809075;Parque Miami;Literacy_Rate;2010;94.8
+3547809075;Parque Miami;Total_Private_Households;2010;1728
+3547809075;Parque Miami;Total_Resident_Population;2010;5874
+3547809075;Parque Miami;Population_with_Income;2010;3033
+3547809075;Parque Miami;Average_Monthly_Income;2010;898.52
+3547809075;Parque Miami;Total_Literate_Population;2010;5443
+3547809076;Jardim Riviera;Literacy_Rate;2010;94.3
+3547809076;Jardim Riviera;Total_Private_Households;2010;1149
+3547809076;Jardim Riviera;Total_Resident_Population;2010;3993
+3547809076;Jardim Riviera;Population_with_Income;2010;1898
+3547809076;Jardim Riviera;Average_Monthly_Income;2010;864.65
+3547809076;Jardim Riviera;Total_Literate_Population;2010;3697
+3547809079;Sítio dos Teco;Literacy_Rate;2010;X
+3547809079;Sítio dos Teco;Total_Private_Households;2010;..
+3547809079;Sítio dos Teco;Total_Resident_Population;2010;16
+3547809079;Sítio dos Teco;Population_with_Income;2010;X
+3547809079;Sítio dos Teco;Average_Monthly_Income;2010;X
+3547809079;Sítio dos Teco;Total_Literate_Population;2010;..
+3547809080;Parque Represa Billings II;Literacy_Rate;2010;97.9
+3547809080;Parque Represa Billings II;Total_Private_Households;2010;204
+3547809080;Parque Represa Billings II;Total_Resident_Population;2010;660
+3547809080;Parque Represa Billings II;Population_with_Income;2010;344
+3547809080;Parque Represa Billings II;Average_Monthly_Income;2010;1331.60
+3547809080;Parque Represa Billings II;Total_Literate_Population;2010;621
+3547809081;Jardim Clube de Campo;Literacy_Rate;2010;98.8
+3547809081;Jardim Clube de Campo;Total_Private_Households;2010;184
+3547809081;Jardim Clube de Campo;Total_Resident_Population;2010;546
+3547809081;Jardim Clube de Campo;Population_with_Income;2010;309
+3547809081;Jardim Clube de Campo;Average_Monthly_Income;2010;1740.59
+3547809081;Jardim Clube de Campo;Total_Literate_Population;2010;515
+3547809082;Sítio Taquaral;Literacy_Rate;2010;94.8
+3547809082;Sítio Taquaral;Total_Private_Households;2010;31
+3547809082;Sítio Taquaral;Total_Resident_Population;2010;111
+3547809082;Sítio Taquaral;Population_with_Income;2010;54
+3547809082;Sítio Taquaral;Average_Monthly_Income;2010;1199.63
+3547809082;Sítio Taquaral;Total_Literate_Population;2010;103
+3547809083;Parque Represa Billings III;Literacy_Rate;2010;96.8
+3547809083;Parque Represa Billings III;Total_Private_Households;2010;444
+3547809083;Parque Represa Billings III;Total_Resident_Population;2010;1600
+3547809083;Parque Represa Billings III;Population_with_Income;2010;798
+3547809083;Parque Represa Billings III;Average_Monthly_Income;2010;943.49
+3547809083;Parque Represa Billings III;Total_Literate_Population;2010;1492
+3547809084;Parque Novo Oratório;Literacy_Rate;2010;98.3
+3547809084;Parque Novo Oratório;Total_Private_Households;2010;5257
+3547809084;Parque Novo Oratório;Total_Resident_Population;2010;16506
+3547809084;Parque Novo Oratório;Population_with_Income;2010;9966
+3547809084;Parque Novo Oratório;Average_Monthly_Income;2010;1507.40
+3547809084;Parque Novo Oratório;Total_Literate_Population;2010;15763
+3547809085;Jardim Santo Alberto;Literacy_Rate;2010;97.6
+3547809085;Jardim Santo Alberto;Total_Private_Households;2010;2036
+3547809085;Jardim Santo Alberto;Total_Resident_Population;2010;6429
+3547809085;Jardim Santo Alberto;Population_with_Income;2010;3864
+3547809085;Jardim Santo Alberto;Average_Monthly_Income;2010;1448.59
+3547809085;Jardim Santo Alberto;Total_Literate_Population;2010;6109
+3547809086;Jardim Ana Maria;Literacy_Rate;2010;97.4
+3547809086;Jardim Ana Maria;Total_Private_Households;2010;1501
+3547809086;Jardim Ana Maria;Total_Resident_Population;2010;4886
+3547809086;Jardim Ana Maria;Population_with_Income;2010;2853
+3547809086;Jardim Ana Maria;Average_Monthly_Income;2010;1372.06
+3547809086;Jardim Ana Maria;Total_Literate_Population;2010;4616
+3547809088;Jardim Itapoan;Literacy_Rate;2010;99.0
+3547809088;Jardim Itapoan;Total_Private_Households;2010;1055
+3547809088;Jardim Itapoan;Total_Resident_Population;2010;3658
+3547809088;Jardim Itapoan;Population_with_Income;2010;2003
+3547809088;Jardim Itapoan;Average_Monthly_Income;2010;1565.32
+3547809088;Jardim Itapoan;Total_Literate_Population;2010;3487
+3547809089;Parque Capuava;Literacy_Rate;2010;97.3
+3547809089;Parque Capuava;Total_Private_Households;2010;2503
+3547809089;Parque Capuava;Total_Resident_Population;2010;8167
+3547809089;Parque Capuava;Population_with_Income;2010;4739
+3547809089;Parque Capuava;Average_Monthly_Income;2010;1374.01
+3547809089;Parque Capuava;Total_Literate_Population;2010;7727
+3547809090;Parque Erasmo Assunção;Literacy_Rate;2010;98.4
+3547809090;Parque Erasmo Assunção;Total_Private_Households;2010;3134
+3547809090;Parque Erasmo Assunção;Total_Resident_Population;2010;9363
+3547809090;Parque Erasmo Assunção;Population_with_Income;2010;5855
+3547809090;Parque Erasmo Assunção;Average_Monthly_Income;2010;1653.58
+3547809090;Parque Erasmo Assunção;Total_Literate_Population;2010;8880
+3547809091;Vila Curuçá;Literacy_Rate;2010;98.1
+3547809091;Vila Curuçá;Total_Private_Households;2010;3706
+3547809091;Vila Curuçá;Total_Resident_Population;2010;11047
+3547809091;Vila Curuçá;Population_with_Income;2010;6739
+3547809091;Vila Curuçá;Average_Monthly_Income;2010;1970.27
+3547809091;Vila Curuçá;Total_Literate_Population;2010;10525
+3547809092;Parque Jaçatuba;Literacy_Rate;2010;98.7
+3547809092;Parque Jaçatuba;Total_Private_Households;2010;1329
+3547809092;Parque Jaçatuba;Total_Resident_Population;2010;4245
+3547809092;Parque Jaçatuba;Population_with_Income;2010;2621
+3547809092;Parque Jaçatuba;Average_Monthly_Income;2010;2190.98
+3547809092;Parque Jaçatuba;Total_Literate_Population;2010;4054
+3547809093;Parque João Ramalho;Literacy_Rate;2010;96.3
+3547809093;Parque João Ramalho;Total_Private_Households;2010;4706
+3547809093;Parque João Ramalho;Total_Resident_Population;2010;15032
+3547809093;Parque João Ramalho;Population_with_Income;2010;8702
+3547809093;Parque João Ramalho;Average_Monthly_Income;2010;1684.75
+3547809093;Parque João Ramalho;Total_Literate_Population;2010;14126
+3547809094;Jardim Rina;Literacy_Rate;2010;98.8
+3547809094;Jardim Rina;Total_Private_Households;2010;789
+3547809094;Jardim Rina;Total_Resident_Population;2010;2721
+3547809094;Jardim Rina;Population_with_Income;2010;1597
+3547809094;Jardim Rina;Average_Monthly_Income;2010;1728.07
+3547809094;Jardim Rina;Total_Literate_Population;2010;2583
+3547809095;Jardim Alzira Franco;Literacy_Rate;2010;95.5
+3547809095;Jardim Alzira Franco;Total_Private_Households;2010;1802
+3547809095;Jardim Alzira Franco;Total_Resident_Population;2010;6137
+3547809095;Jardim Alzira Franco;Population_with_Income;2010;3353
+3547809095;Jardim Alzira Franco;Average_Monthly_Income;2010;980.17
+3547809095;Jardim Alzira Franco;Total_Literate_Population;2010;5691
+3547809096;Tamanduateí 8;Literacy_Rate;2010;92.9
+3547809096;Tamanduateí 8;Total_Private_Households;2010;2820
+3547809096;Tamanduateí 8;Total_Resident_Population;2010;10144
+3547809096;Tamanduateí 8;Population_with_Income;2010;4740
+3547809096;Tamanduateí 8;Average_Monthly_Income;2010;829.44
+3547809096;Tamanduateí 8;Total_Literate_Population;2010;9387
+3547809098;Acampamento Anchieta;Literacy_Rate;2010;94.9
+3547809098;Acampamento Anchieta;Total_Private_Households;2010;65
+3547809098;Acampamento Anchieta;Total_Resident_Population;2010;236
+3547809098;Acampamento Anchieta;Population_with_Income;2010;116
+3547809098;Acampamento Anchieta;Average_Monthly_Income;2010;891.86
+3547809098;Acampamento Anchieta;Total_Literate_Population;2010;217
+3547809099;Jardim Guaripocaba;Literacy_Rate;2010;97.3
+3547809099;Jardim Guaripocaba;Total_Private_Households;2010;23
+3547809099;Jardim Guaripocaba;Total_Resident_Population;2010;98
+3547809099;Jardim Guaripocaba;Population_with_Income;2010;37
+3547809099;Jardim Guaripocaba;Average_Monthly_Income;2010;1028.92
+3547809099;Jardim Guaripocaba;Total_Literate_Population;2010;85
+3547809100;Parque das Garças;Literacy_Rate;2010;92.4
+3547809100;Parque das Garças;Total_Private_Households;2010;24
+3547809100;Parque das Garças;Total_Resident_Population;2010;71
+3547809100;Parque das Garças;Population_with_Income;2010;47
+3547809100;Parque das Garças;Average_Monthly_Income;2010;1188.30
+3547809100;Parque das Garças;Total_Literate_Population;2010;68
+3547809101;Parque Rio Grande;Literacy_Rate;2010;91.5
+3547809101;Parque Rio Grande;Total_Private_Households;2010;141
+3547809101;Parque Rio Grande;Total_Resident_Population;2010;505
+3547809101;Parque Rio Grande;Population_with_Income;2010;230
+3547809101;Parque Rio Grande;Average_Monthly_Income;2010;783.84
+3547809101;Parque Rio Grande;Total_Literate_Population;2010;458
+3547809103;Parque América;Literacy_Rate;2010;93.2
+3547809103;Parque América;Total_Private_Households;2010;52
+3547809103;Parque América;Total_Resident_Population;2010;195
+3547809103;Parque América;Population_with_Income;2010;95
+3547809103;Parque América;Average_Monthly_Income;2010;896.65
+3547809103;Parque América;Total_Literate_Population;2010;176
+3547809106;Campo Grande;Literacy_Rate;2010;97.2
+3547809106;Campo Grande;Total_Private_Households;2010;34
+3547809106;Campo Grande;Total_Resident_Population;2010;124
+3547809106;Campo Grande;Population_with_Income;2010;50
+3547809106;Campo Grande;Average_Monthly_Income;2010;777.40
+3547809106;Campo Grande;Total_Literate_Population;2010;116
+3547809107;Estância Rio Grande;Literacy_Rate;2010;92.0
+3547809107;Estância Rio Grande;Total_Private_Households;2010;43
+3547809107;Estância Rio Grande;Total_Resident_Population;2010;144
+3547809107;Estância Rio Grande;Population_with_Income;2010;68
+3547809107;Estância Rio Grande;Average_Monthly_Income;2010;770.03
+3547809107;Estância Rio Grande;Total_Literate_Population;2010;134
+3547809108;Jardim Joaquim Eugênio de Lima;Literacy_Rate;2010;88.0
+3547809108;Jardim Joaquim Eugênio de Lima;Total_Private_Households;2010;182
+3547809108;Jardim Joaquim Eugênio de Lima;Total_Resident_Population;2010;701
+3547809108;Jardim Joaquim Eugênio de Lima;Population_with_Income;2010;248
+3547809108;Jardim Joaquim Eugênio de Lima;Average_Monthly_Income;2010;813.65
+3547809108;Jardim Joaquim Eugênio de Lima;Total_Literate_Population;2010;629
+3547809110;Várzea do Rio Grande;Literacy_Rate;2010;91.8
+3547809110;Várzea do Rio Grande;Total_Private_Households;2010;28
+3547809110;Várzea do Rio Grande;Total_Resident_Population;2010;99
+3547809110;Várzea do Rio Grande;Population_with_Income;2010;54
+3547809110;Várzea do Rio Grande;Average_Monthly_Income;2010;687.87
+3547809110;Várzea do Rio Grande;Total_Literate_Population;2010;91
+3547809111;Reserva Biológica Alto da Serra;Literacy_Rate;2010;X
+3547809111;Reserva Biológica Alto da Serra;Total_Private_Households;2010;..
+3547809111;Reserva Biológica Alto da Serra;Total_Resident_Population;2010;2
+3547809111;Reserva Biológica Alto da Serra;Population_with_Income;2010;X
+3547809111;Reserva Biológica Alto da Serra;Average_Monthly_Income;2010;X
+3547809111;Reserva Biológica Alto da Serra;Total_Literate_Population;2010;..
+3547809113;Paranapiacaba;Literacy_Rate;2010;96.7
+3547809113;Paranapiacaba;Total_Private_Households;2010;259
+3547809113;Paranapiacaba;Total_Resident_Population;2010;921
+3547809113;Paranapiacaba;Population_with_Income;2010;469
+3547809113;Paranapiacaba;Average_Monthly_Income;2010;1057.85
+3547809113;Paranapiacaba;Total_Literate_Population;2010;867
+3547809115;Jardim Cipreste;Total_Private_Households;2022;2412
+3547809115;Jardim Cipreste;Total_Resident_Population;2022;7311
+3547809116;Jardim Guarará;Total_Private_Households;2022;1996
+3547809116;Jardim Guarará;Total_Resident_Population;2022;5486
+3547809117;Jardim Jamaica;Total_Private_Households;2022;710
+3547809117;Jardim Jamaica;Total_Resident_Population;2022;1909
+3547809118;Jardim Santo André CDHU;Total_Private_Households;2022;9371
+3547809118;Jardim Santo André CDHU;Total_Resident_Population;2022;27028
+3547809119;Jardim Telles de Menezes;Total_Private_Households;2022;3416
+3547809119;Jardim Telles de Menezes;Total_Resident_Population;2022;9258
+3547809120;Jardim Vila Rica;Total_Private_Households;2022;552
+3547809120;Jardim Vila Rica;Total_Resident_Population;2022;1557
+3547809121;Novo Homero Thon;Total_Private_Households;2022;1725
+3547809121;Novo Homero Thon;Total_Resident_Population;2022;4356
+3547809122;Pinheirinho;Total_Private_Households;2022;862
+3547809122;Pinheirinho;Total_Resident_Population;2022;2178
+3547809123;Vila Aquilino;Total_Private_Households;2022;1374
+3547809123;Vila Aquilino;Total_Resident_Population;2022;4401
+3547809124;Vila João Ramalho;Total_Private_Households;2022;2981
+3547809124;Vila João Ramalho;Total_Resident_Population;2022;8485
+3547809125;Vila Vitória;Total_Private_Households;2022;1084
+3547809125;Vila Vitória;Total_Resident_Population;2022;2891
+3547809126;Centreville;Total_Private_Households;2022;1775
+3547809126;Centreville;Total_Resident_Population;2022;5138
+3547809127;Miami / Riviera;Total_Private_Households;2022;4100
+3547809127;Miami / Riviera;Total_Resident_Population;2022;11660
+3547809128;Rio Bonito;Total_Private_Households;2022;34
+3547809128;Rio Bonito;Total_Resident_Population;2022;105
+3547809129;Rio Mogi;Total_Private_Households;2022;1
+3547809129;Rio Mogi;Total_Resident_Population;2022;4
+3547809130;Araçaúva;Total_Private_Households;2022;5
+3547809130;Araçaúva;Total_Resident_Population;2022;11
+3547809132;Várzea do Tamanduateí;Total_Private_Households;2022;6
+3547809132;Várzea do Tamanduateí;Total_Resident_Population;2022;14
+3547809500;Silveira;Total_Private_Households;2022;1173
+3547809500;Silveira;Total_Resident_Population;2022;3006
