@@ -11,7 +11,7 @@ import logging
 from pathlib import Path
 from config.paths import LOGS_DIR
 
-def setup_logger(name: str, level: str = "INFO", log_filename: str = "rag_reviews.log") -> logging.Logger:
+def setup_logger(name: str, level: str = "INFO", log_filename: str = "project.log") -> logging.Logger:
     """
     Create and configure a logger with file and console output.
 
@@ -23,7 +23,7 @@ def setup_logger(name: str, level: str = "INFO", log_filename: str = "rag_review
         Logging level: 'DEBUG', 'INFO', 'WARNING', 'ERROR', or 'CRITICAL'.
         Default is 'INFO'.
     log_filename : str, optional
-        Name of the log file stored in LOGS_DIR. Default is 'rag_reviews.log'.
+        Name of the log file stored in LOGS_DIR. Default is 'project.log'.
 
     Returns
     -------
