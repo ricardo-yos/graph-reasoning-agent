@@ -16,19 +16,61 @@ The processed graph is stored directly on the Neo4j server, making it accessible
 - shapely
 - python-dotenv (for environment variable management)
 
-## Architecture and Module Responsibilities
-### Folders
-- **neo4j/**: contains modules related to Neo4j operations.
-- **spatial/**: contains modules for spatial processing and assigning spatial relationships.
+---
 
-### Modules
-- `neo4j_pipeline.py`: main ETL pipeline for processing data and building the Neo4j graph.
-- `client_tester.py`: script to test Neo4j connection and run sample queries.
-- `neo4j/connector.py`: manages Neo4j connection and index creation.
-- `neo4j/insert_nodes.py`: handles batch insertion of nodes (neighborhoods, places, roads, intersections, reviews).
-- `neo4j/insert_relationships.py`: handles batch insertion of relationships between nodes.
-- `neo4j/neo4j_deletions.py`: utility to delete all nodes and relationships in batches.
-- `spatial/assign_spatial_attributes.py`: assigns spatial relationships between geographic entities.
+## Prerequisites & Setup
+
+### Neo4j Account & Setup
+To use this module you must have access to a running Neo4j instance.  
+You can create a free account and database at [Neo4j AuraDB](https://neo4j.com/product/auradb/)  
+or install Neo4j locally via [Neo4j Desktop](https://neo4j.com/download/).
+
+### Python / Environment
+- Recommended: **Python 3.10+**
+- Create a virtual environment:
+
+<details><summary>Linux / macOS</summary>
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+</details><details><summary>Windows (PowerShell)</summary>
+
+```bash
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+</details> 
+
+---
+
+## Usage
+1. Load environment variables:
+```bash
+export NEO4J_URI=<your_neo4j_bolt_uri>
+export NEO4J_USER=<your_neo4j_username>
+export NEO4J_PASSWORD=<your_neo4j_password>
+```
+2. Run the main ETL pipeline:
+```bash
+python -m graph.neo4j_pipeline
+```
+
+3. Test the Neo4j connection:
+```bash
+python -m graph.client_tester
+```
+4. Delete all nodes and relationships:
+```bash
+python -m graph.neo4j.neo4j_deletions
+```
+
+---
 
 ## Expected Data Formats
 
@@ -37,7 +79,7 @@ into the Neo4j graph database. The main data types handled are neighborhoods,
 places, roads, intersections, and reviews.
 
 ### 1. Neighborhoods
-- **Type:** `geopandas.GeoDataFrame`
+- **Type:** `geopandas.GeoDataFrame`  
 - **Required columns:**
   - `neighborhood_id` (unique identifier)
   - `name` (neighborhood name)
@@ -91,6 +133,8 @@ places, roads, intersections, and reviews.
 
 > **Note:** All IDs should be unique to avoid duplicate nodes in Neo4j.  
 > Spatial data should be in the same coordinate reference system (CRS) for proper joins.
+
+---
 
 ## Nodes and Relationships
 
@@ -160,55 +204,23 @@ places, roads, intersections, and reviews.
 > **Note:** Relationships are directional, reflecting real-world connections.  
 > Neighborhoods contain places and roads, roads can contain places and intersections are connected via ROAD relationships, and places are linked to reviews and nearby intersections.
 
-## Prerequisites & Setup
+---
 
-### Neo4j Account & Setup
-To use this module you must have access to a running Neo4j instance.  
-You can create a free account and database at [Neo4j AuraDB](https://neo4j.com/product/auradb/)  
-or install Neo4j locally via [Neo4j Desktop](https://neo4j.com/download/).
+## Architecture and Module Responsibilities
+### Folders
+- **neo4j/**: contains modules related to Neo4j operations.
+- **spatial/**: contains modules for spatial processing and assigning spatial relationships.
 
-### Python / Environment
-- Recommended: **Python 3.10+**
-- Create a virtual environment:
+### Modules
+- `neo4j_pipeline.py`: main ETL pipeline for processing data and building the Neo4j graph.
+- `client_tester.py`: script to test Neo4j connection and run sample queries.
+- `neo4j/connector.py`: manages Neo4j connection and index creation.
+- `neo4j/insert_nodes.py`: handles batch insertion of nodes (neighborhoods, places, roads, intersections, reviews).
+- `neo4j/insert_relationships.py`: handles batch insertion of relationships between nodes.
+- `neo4j/neo4j_deletions.py`: utility to delete all nodes and relationships in batches.
+- `spatial/assign_spatial_attributes.py`: assigns spatial relationships between geographic entities.
 
-<details><summary>Linux / macOS</summary>
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-</details><details><summary>Windows (PowerShell)</summary>
-
-```bash
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
-</details> 
-
-## Usage
-1. Load environment variables:
-```bash
-export NEO4J_URI=<your_neo4j_bolt_uri>
-export NEO4J_USER=<your_neo4j_username>
-export NEO4J_PASSWORD=<your_neo4j_password>
-```
-2. Run the main ETL pipeline:
-```bash
-python -m graph.neo4j_pipeline
-```
-
-3. Test the Neo4j connection:
-```bash
-python -m graph.client_tester
-```
-4. Delete all nodes and relationships:
-```bash
-python -m graph.neo4j.neo4j_deletions
-```
+---
 
 ## Best Practices and Performance Tips
 
