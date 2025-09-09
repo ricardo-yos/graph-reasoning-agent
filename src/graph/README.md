@@ -37,7 +37,7 @@ into the Neo4j graph database. The main data types handled are neighborhoods,
 places, roads, intersections, and reviews.
 
 ### 1. Neighborhoods
-- **Type:** `pandas.DataFrame`  
+- **Type:** `geopandas.GeoDataFrame`
 - **Required columns:**
   - `neighborhood_id` (unique identifier)
   - `name` (neighborhood name)
@@ -51,7 +51,7 @@ places, roads, intersections, and reviews.
   - `centroid_lat`, `centroid_lon` (coordinates of the neighborhood centroid)
 
 ### 2. Places
-- **Type:** `pandas.DataFrame`  
+- **Type:** `geopandas.GeoDataFrame` 
 - **Required columns:**
   - `place_id` (unique identifier)
   - `name`  
