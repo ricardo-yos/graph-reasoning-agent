@@ -1,10 +1,10 @@
 """
-Logger Setup Module
--------------------
+Logger Utility
+==============
 
-Provides a utility function to create a logger that logs messages
-to both a file and the console. Log files are stored in the
-directory defined by `LOGS_DIR` in `config.paths`.
+This module provides a function to create a logger that outputs messages
+to both a file and the console. Log files are stored in the directory
+defined by `LOGS_DIR` in `config.paths`.
 """
 
 import logging
