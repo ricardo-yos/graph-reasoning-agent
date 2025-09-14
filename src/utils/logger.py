@@ -1,10 +1,30 @@
 """
-Logger Utility
-==============
+Logger Setup Module
+===================
 
-This module provides a function to create a logger that outputs messages
-to both a file and the console. Log files are stored in the directory
-defined by `LOGS_DIR` in `config.paths`.
+This module provides a utility function to create and configure a logger
+that outputs messages to both a file and the console.
+
+Features
+--------
+- Logs messages to a file located in LOGS_DIR (defined in config.paths).
+- Logs messages to the console (stdout).
+- Ensures the log directory exists before writing.
+- Prevents adding duplicate handlers if the logger already exists.
+- Supports standard logging levels: DEBUG, INFO, WARNING, ERROR, CRITICAL.
+- Configurable log file name and logging level per logger instance.
+
+Log Format
+----------
+%(asctime)s [%(levelname)s] %(message)s
+
+Example
+-------
+from utils.logger import setup_logger
+
+logger = setup_logger("my_logger", level="DEBUG", log_filename="my_project.log")
+logger.info("This is an info message.")
+logger.error("This is an error message.")
 """
 
 import logging
