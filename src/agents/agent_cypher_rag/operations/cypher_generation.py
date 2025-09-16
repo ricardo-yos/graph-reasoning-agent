@@ -21,10 +21,10 @@ Example:
     from config.constants import GRAPH_INFO
 
     llm = LLMManager()
-    user_question = "Quantos petshops existem no bairro Centro?"
+    user_question = "Quantos petshops existem no bairro Vila Assunção?"
     matched_cyphers = [
-        "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name",
-        "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name ORDER BY p.rating DESC"
+        "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN COUNT(p) AS total_petshops",
+        "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN COUNT(p) AS total_petshops ORDER BY p.rating DESC"
     ]
 
     cypher_query = generate_cypher_query(llm, user_question, matched_cyphers, GRAPH_INFO)
