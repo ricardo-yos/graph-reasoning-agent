@@ -20,7 +20,7 @@ Example:
     from llm.llm_manager import LLMManager
 
     llm = LLMManager()
-    question = "Liste os petshops do bairro Campestre"
+    question = "Liste os petshops do bairro Jardim e ordene pela avaliação"
     intentions = detect_intention(llm, question)
 """
 
@@ -130,9 +130,9 @@ if __name__ == "__main__":
 
     # Example questions to test intention detection
     questions = [
-        "Liste os petshops do bairro Campestre",
-        "Quais petshops do bairro Jardim têm nota maior que 4?",
-        "Quantos petshops existem no bairro Centro?"
+        "Liste os petshops do bairro Jardim e ordene pela avaliação",
+        "Quantos petshops existem no bairro Vila Assunção?",
+        "Mostre os petshops do bairro Paraíso com nota maior que 4"
     ]
 
     # Loop through each question and display the detected intentions
