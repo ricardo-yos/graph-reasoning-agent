@@ -1,6 +1,6 @@
 """
-Intent Detection
-================
+User Intent Detection for Graph Queries
+=======================================
 
 This module provides a function `detect_intention` to detect the
 primary intention(s) of a user's question related to a graph database
