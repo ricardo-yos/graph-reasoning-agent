@@ -19,8 +19,8 @@ Example:
 
     from agents.agent_cypher_rag.operations.match_cypher import cypher_matching
 
-    user_question = "Quais petshops existem no bairro Centro?"
-    intent_filter = "list_nodes"
+    user_question = "Quais são os dados socioeconômicos do bairro Vila Bastos?"
+    intent_filter = "node_info"
     matched_queries = cypher_matching(user_question, intent=intent_filter, top_k=2)
 """
 
