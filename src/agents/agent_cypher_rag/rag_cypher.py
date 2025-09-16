@@ -1,6 +1,6 @@
 """
-RAGCypherAgent Module
----------------------
+RAG-Based Cypher Agent
+======================
 
 This module defines the `RAGCypherAgent` class, which orchestrates the process of
 interpreting natural language questions about a Neo4j graph, generating and correcting
