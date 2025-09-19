@@ -1,0 +1,28 @@
+question;intention;cypher
+Liste os petshops do bairro Jardim;list_nodes;MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name
+Quais petshops estão localizados no bairro Centro?;list_nodes;MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name
+Liste todos os bairros cadastrados;list_nodes;MATCH (n:Neighborhood) RETURN n.name
+Quais os petshops localizados na Avenida Dom Pedro II?;list_nodes;MATCH (s:Road {name: 'Avenida Dom Pedro II'})-[:CONTAINS]->(p:Place {type: 'pet_store'})RETURN p.name;
+Liste os petshops do bairro Vila Bastos com nota maior que 4;filter_nodes;MATCH (n:Neighborhood {name: 'Vila Bastos'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE p.rating > 4 RETURN p.name, p.rating
+Quais veterinárias do bairro Campestre possuem mais de 10 reviews?;filter_nodes;MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) WHERE p.num_reviews > 10 RETURN p.name, p.num_reviews
+Liste os bairros com população maior que 10.000 habitantes;filter_nodes;MATCH (n:Neighborhood) WHERE n.total_resident_population > 10000 RETURN n.name, n.total_resident_population
+Quantos petshops existem no bairro Jardim?;aggregate_nodes;MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN COUNT(p) AS total_petshops
+Qual a soma das avaliações de todos os petshops do bairro Centro?;aggregate_nodes;MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN SUM(p.rating) AS sum_rating
+Quantos bairros possuem mais de 5.000 domicílios particulares?;aggregate_nodes;MATCH (n:Neighborhood) WHERE n.total_private_households > 5000 RETURN COUNT(n) AS total_bairros
+Quais tipos de lugares existem no bairro Vila Gilda?;distinct_values;MATCH (n:Neighborhood {name: 'Vila Gilda'})-[:CONTAINS]->(p:Place) RETURN DISTINCT p.type
+Liste todos os tipos de estabelecimentos do bairro Campestre;distinct_values;MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place) RETURN DISTINCT p.type
+Quais são as diferentes taxas de alfabetização entre os bairros?;distinct_values;MATCH (n:Neighborhood) RETURN DISTINCT n.literacy_rate
+Quais clínicas veterinárias estão próximas aos petshops do bairro Jardim?;related_nodes;MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'})MATCH (p)-[:NEAR]->(i:Intersection)<-[:NEAR]-(v:Place {type: 'veterinary_care'})RETURN DISTINCT v.name;
+Qual é a distância entre o bairro Jardim e o bairro Campestre?;distance;MATCH (a:Neighborhood {name: 'Jardim'}), (b:Neighborhood {name: 'Campestre'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters
+Qual a distância em linha reta entre o bairro Vila Bastos e o bairro Centro?;distance;MATCH (a:Neighborhood {name: 'Vila Bastos'}), (b:Neighborhood {name: 'Centro'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters
+Quantos metros separam o bairro Vila Assunção do bairro Centro?;distance;MATCH (a:Neighborhood {name: 'Vila Assunção'}), (b:Neighborhood {name: 'Centro'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters
+Quais são os dados socioeconômicos do bairro Vila Bastos?;node_info;MATCH (n:Neighborhood {name: 'Vila Bastos'}) RETURN n.name, n.average_monthly_income, n.literacy_rate, n.total_resident_population
+Mostre os indicadores demográficos do bairro Vila Gilda;node_info;MATCH (n:Neighborhood {name: 'Vila Gilda'}) RETURN n.name, n.total_resident_population, n.total_private_households, n.population_with_income
+Liste as informações básicas do bairro Vila Assunção;node_info;MATCH (n:Neighborhood {name: 'Vila Assunção'}) RETURN n.name, n.area_km2, n.total_resident_population, n.total_literate_population
+Quais são os dados completos da clínica veterinária Paco & Sua Turminha?;node_info;MATCH (p:Place {name: 'Paco & Sua Turminha'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id
+Quais são os detalhes do petshop Patokinhas PetClub?;node_info;MATCH (p:Place {name: 'Patokinhas PetClub'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id
+Quais são os detalhes da clínica veterinária VetAmigo?;node_info;MATCH (p:Place {name: 'VetAmigo'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id
+
+
+
+
