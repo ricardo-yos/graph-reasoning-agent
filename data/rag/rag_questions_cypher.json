@@ -1,0 +1,1037 @@
+[
+    {
+        "question": "Qual é o bairro com petshops que tem uma área maior que 10 km²?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood)-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE n.area_km2 > 10 RETURN n.name"
+    },
+    {
+        "question": "Liste os petshops do bairro Jardim em ordem alfabética",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name ORDER BY p.name"
+    },
+    {
+        "question": "Mostre apenas os 5 primeiros petshops do bairro Jardim",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name LIMIT 5"
+    },
+    {
+        "question": "Quantos petshops existem no bairro Jardim?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN COUNT(p) AS total_petshops"
+    },
+    {
+        "question": "Qual é a soma de reviews de todos os petshops do bairro Jardim?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'})-[:HAS_REVIEW]->(r:Review) RETURN SUM(r.rating) AS total_reviews"
+    },
+    {
+        "question": "Qual é a média de rating dos petshops do bairro Jardim?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN AVG(p.rating) AS avg_rating"
+    },
+    {
+        "question": "Qual é o petshop com menor rating no bairro Jardim?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.rating ORDER BY p.rating ASC LIMIT 1"
+    },
+    {
+        "question": "Qual é o petshop com maior rating no bairro Jardim?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.rating ORDER BY p.rating DESC LIMIT 1"
+    },
+    {
+        "question": "Liste os petshops do bairro Jardim",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name"
+    },
+    {
+        "question": "Qual é o petshop com maior rating no bairro Centro?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.rating ORDER BY p.rating DESC LIMIT 1"
+    },
+    {
+        "question": "Liste os petshops do bairro Centro em ordem alfabética",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name ORDER BY p.name"
+    },
+    {
+        "question": "Mostre apenas os 5 primeiros petshops do bairro Centro",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name LIMIT 5"
+    },
+    {
+        "question": "Quantos petshops existem no bairro Centro?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN COUNT(p) AS total_petshops"
+    },
+    {
+        "question": "Qual é a soma de reviews de todos os petshops localizados no bairro Centro?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN SUM(p.num_reviews) AS total_reviews"
+    },
+    {
+        "question": "Qual é a média de rating dos petshops localizados no bairro Centro?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN AVG(p.rating) AS avg_rating"
+    },
+    {
+        "question": "Qual petshop com menor rating está localizado no bairro Centro?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.rating ORDER BY p.rating ASC LIMIT 1"
+    },
+    {
+        "question": "Qual petshop com maior rating está localizado no bairro Centro?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.rating ORDER BY p.rating DESC LIMIT 1"
+    },
+    {
+        "question": "Quais petshops estão localizados no bairro Centro?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name"
+    },
+    {
+        "question": "Qual é o nome dos bairros que têm área maior que 10 km²?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.area_km2 > 10 RETURN n.name"
+    },
+    {
+        "question": "Liste todos os bairros cadastrados em ordem alfabética",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood) RETURN n.name ORDER BY n.name"
+    },
+    {
+        "question": "Mostre apenas os primeiros 5 bairros cadastrados",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood) RETURN n.name LIMIT 5"
+    },
+    {
+        "question": "Quantos bairros estão cadastrados?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood) RETURN COUNT(n) AS total_neighborhoods"
+    },
+    {
+        "question": "Qual é a soma de áreas de todos os bairros cadastrados?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood) RETURN SUM(n.area_km2) AS total_area"
+    },
+    {
+        "question": "Qual é a média de área dos bairros cadastrados?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood) RETURN AVG(n.area_km2) AS avg_area"
+    },
+    {
+        "question": "Qual é o bairro com menor área cadastrado?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood) RETURN n.name, n.area_km2 ORDER BY n.area_km2 ASC LIMIT 1"
+    },
+    {
+        "question": "Qual é o bairro com maior área no cadastro?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood) RETURN n.name, n.area_km2 ORDER BY n.area_km2 DESC LIMIT 1"
+    },
+    {
+        "question": "Liste todos os bairros cadastrados",
+        "intention": "list_nodes",
+        "cypher": "MATCH (n:Neighborhood) RETURN n.name"
+    },
+    {
+        "question": "Quais os petshops localizados na Avenida Dom Pedro II que estão em bairros com população maior que 1000 habitantes?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (s:Road {name: 'Avenida Dom Pedro II'})-[:CONTAINS]->(n:Neighborhood)-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE n.population > 1000 RETURN p.name"
+    },
+    {
+        "question": "Liste os petshops localizados na Avenida Dom Pedro II em ordem alfabética",
+        "intention": "list_nodes",
+        "cypher": "MATCH (s:Road {name: 'Avenida Dom Pedro II'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name ORDER BY p.name"
+    },
+    {
+        "question": "Mostre os 5 primeiros petshops localizados na Avenida Dom Pedro II",
+        "intention": "list_nodes",
+        "cypher": "MATCH (s:Road {name: 'Avenida Dom Pedro II'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name LIMIT 5"
+    },
+    {
+        "question": "Quantos petshops existem na Avenida Dom Pedro II?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (s:Road {name: 'Avenida Dom Pedro II'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN COUNT(p) AS total_petshops"
+    },
+    {
+        "question": "Qual é a soma de reviews de todos os petshops localizados na Avenida Dom Pedro II?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (s:Road {name: 'Avenida Dom Pedro II'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN SUM(p.num_reviews) AS total_reviews"
+    },
+    {
+        "question": "Qual é a média de rating dos petshops localizados na Avenida Dom Pedro II?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (s:Road {name: 'Avenida Dom Pedro II'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN AVG(p.rating) AS avg_rating"
+    },
+    {
+        "question": "Qual é o petshop com menor rating localizado na Avenida Dom Pedro II?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (s:Road {name: 'Avenida Dom Pedro II'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.rating ORDER BY p.rating ASC LIMIT 1"
+    },
+    {
+        "question": "Qual é o petshop com maior rating localizado na Avenida Dom Pedro II?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (s:Road {name: 'Avenida Dom Pedro II'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.rating ORDER BY p.rating DESC LIMIT 1"
+    },
+    {
+        "question": "Quais os petshops localizados na Avenida Dom Pedro II?",
+        "intention": "list_nodes",
+        "cypher": "MATCH (s:Road {name: 'Avenida Dom Pedro II'})-[:CONTAINS]->(p:Place {type: 'pet_store'})RETURN p.name"
+    },
+    {
+        "question": "Qual é a lista de petshops do bairro Vila Bastos com nota acima de 4?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE p.rating > 4 RETURN p.name, p.rating"
+    },
+    {
+        "question": "Liste os petshops do bairro Vila Bastos em ordem decrescente de nota",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE p.rating > 4 RETURN p.name, p.rating ORDER BY p.rating DESC"
+    },
+    {
+        "question": "Mostre os 5 petshops do bairro Vila Bastos com nota maior que 4",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE p.rating > 4 RETURN p.name, p.rating LIMIT 5"
+    },
+    {
+        "question": "Quantos petshops existem no bairro Vila Bastos com nota maior que 4?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE p.rating > 4 RETURN COUNT(p) AS total_petshops"
+    },
+    {
+        "question": "Qual é a soma de notas dos petshops do bairro Vila Bastos?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN SUM(p.rating) AS total_rating"
+    },
+    {
+        "question": "Qual é a média de nota dos petshops do bairro Vila Bastos?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE p.rating > 4 RETURN AVG(p.rating) AS avg_rating"
+    },
+    {
+        "question": "Qual é o petshop com menor nota no bairro Vila Bastos?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE p.rating > 4 RETURN p.name, MIN(p.rating) AS min_rating"
+    },
+    {
+        "question": "Qual é o petshop com a maior nota no bairro Vila Bastos?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, MAX(p.rating) AS max_rating"
+    },
+    {
+        "question": "Liste os petshops do bairro Vila Bastos com nota maior que 4",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE p.rating > 4 RETURN p.name, p.rating"
+    },
+    {
+        "question": "Qual é o nome das veterinárias do bairro Campestre que possuem mais de 10 avaliações?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) WHERE p.num_reviews > 10 RETURN p.name"
+    },
+    {
+        "question": "Liste as veterinárias do bairro Campestre com mais de 10 reviews em ordem decrescente de número de reviews",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) WHERE p.num_reviews > 10 RETURN p.name, p.num_reviews ORDER BY p.num_reviews DESC"
+    },
+    {
+        "question": "Mostre as 5 primeiras veterinárias do bairro Campestre com mais de 10 reviews",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) WHERE p.num_reviews > 10 RETURN p.name, p.num_reviews LIMIT 5"
+    },
+    {
+        "question": "Quantas veterinárias existem no bairro Campestre com mais de 10 reviews?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) WHERE p.num_reviews > 10 RETURN COUNT(p) AS total_veterinarias"
+    },
+    {
+        "question": "Qual é a soma de reviews de todas as veterinárias do bairro Campestre?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) RETURN SUM(p.num_reviews) AS total_reviews"
+    },
+    {
+        "question": "Qual é a média de reviews das veterinárias do bairro Campestre?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) RETURN AVG(p.num_reviews) AS avg_reviews"
+    },
+    {
+        "question": "Qual é a menor quantidade de reviews de uma veterinária do bairro Campestre?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) RETURN MIN(p.num_reviews) AS min_reviews"
+    },
+    {
+        "question": "Qual é a veterinária do bairro Campestre com mais reviews?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) RETURN p.name, MAX(p.num_reviews) AS max_reviews"
+    },
+    {
+        "question": "Quais veterinárias do bairro Campestre possuem mais de 10 reviews?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) WHERE p.num_reviews > 10 RETURN p.name, p.num_reviews"
+    },
+    {
+        "question": "Qual é a população dos bairros com mais de 10.000 habitantes?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_resident_population > 10000 RETURN n.name, n.total_resident_population"
+    },
+    {
+        "question": "Liste os bairros com população maior que 10.000 habitantes em ordem decrescente de população",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_resident_population > 10000 RETURN n.name, n.total_resident_population ORDER BY n.total_resident_population DESC"
+    },
+    {
+        "question": "Mostre os 5 bairros com população maior que 10.000 habitantes",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_resident_population > 10000 RETURN n.name, n.total_resident_population LIMIT 5"
+    },
+    {
+        "question": "Quantos bairros têm população maior que 10.000 habitantes?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_resident_population > 10000 RETURN COUNT(n) AS total_bairros"
+    },
+    {
+        "question": "Qual é a soma da população de todos os bairros com população maior que 10.000 habitantes?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_resident_population > 10000 RETURN SUM(n.total_resident_population) AS total_population"
+    },
+    {
+        "question": "Qual é a média de população dos bairros com mais de 10.000 habitantes?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_resident_population > 10000 RETURN AVG(n.total_resident_population) AS avg_population"
+    },
+    {
+        "question": "Qual é o bairro com menor população no bairro com população maior que 10.000 habitantes?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_resident_population > 10000 RETURN n.name, n.total_resident_population ORDER BY n.total_resident_population ASC LIMIT 1"
+    },
+    {
+        "question": "Qual é o bairro com maior população no bairro Jardim?",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place) RETURN MAX(n.total_resident_population) AS max_population"
+    },
+    {
+        "question": "Liste os bairros com população maior que 10.000 habitantes",
+        "intention": "filter_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_resident_population > 10000 RETURN n.name, n.total_resident_population"
+    },
+    {
+        "question": "Quantos petshops existem no bairro Jardim, considerando apenas os bairros com população maior que 1000 habitantes?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {population: 1000})-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE n.name = 'Jardim' RETURN COUNT(p) AS total_petshops"
+    },
+    {
+        "question": "Liste os petshops do bairro Jardim em ordem crescente de quantidade",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN COUNT(p) AS total_petshops ORDER BY total_petshops"
+    },
+    {
+        "question": "Mostre apenas os 5 primeiros petshops do bairro Jardim",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN COUNT(p) AS total_petshops LIMIT 5"
+    },
+    {
+        "question": "Quantos petshops existem em cada bairro?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood)-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN n.name, COUNT(p) AS total_petshops"
+    },
+    {
+        "question": "Qual é a soma de petshops do bairro Jardim?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN COUNT(p) AS total_petshops"
+    },
+    {
+        "question": "Qual é a média de petshops por bairro em Jardim?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN AVG(COUNT(p)) AS avg_petshops"
+    },
+    {
+        "question": "Qual é o menor número de petshops existentes em algum bairro?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood)-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN MIN(COUNT(p)) AS min_petshops"
+    },
+    {
+        "question": "Qual é o bairro com maior número de petshops?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood)-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN n.name, COUNT(p) AS total_petshops ORDER BY total_petshops DESC LIMIT 1"
+    },
+    {
+        "question": "Quantos petshops existem no bairro Jardim?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN COUNT(p) AS total_petshops"
+    },
+    {
+        "question": "Qual a soma das avaliações de todos os petshops do bairro Centro, considerando apenas os bairros com população maior que 1000 habitantes?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE n.population > 1000 RETURN SUM(p.rating) AS sum_rating"
+    },
+    {
+        "question": "Ordene a soma das avaliações dos petshops do bairro Centro em ordem decrescente",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN SUM(p.rating) AS sum_rating ORDER BY sum_rating DESC"
+    },
+    {
+        "question": "Mostre a soma das avaliações de apenas 5 petshops do bairro Centro",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN SUM(p.rating) AS sum_rating LIMIT 5"
+    },
+    {
+        "question": "Quantos petshops existem no bairro Centro?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN COUNT(p) AS total_petshops"
+    },
+    {
+        "question": "Qual a soma das avaliações de todos os petshops do bairro Centro?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN SUM(p.num_reviews) AS total_reviews"
+    },
+    {
+        "question": "Qual a média das avaliações de todos os petshops do bairro Centro?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN AVG(p.rating) AS avg_rating"
+    },
+    {
+        "question": "Qual é o petshop com menor rating no bairro Centro?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.rating ORDER BY p.rating ASC LIMIT 1"
+    },
+    {
+        "question": "Qual é o petshop com maior rating no bairro Centro?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.rating ORDER BY p.rating DESC LIMIT 1"
+    },
+    {
+        "question": "Qual a soma das avaliações de todos os petshops do bairro Centro?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Centro'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN SUM(p.rating) AS sum_rating"
+    },
+    {
+        "question": "Quais bairros têm mais de 5.000 domicílios particulares?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_private_households > 5000 RETURN n.name"
+    },
+    {
+        "question": "Em ordem decrescente, quantos bairros possuem mais de 5.000 domicílios particulares?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_private_households > 5000 RETURN COUNT(n) AS total_bairros ORDER BY total_bairros DESC"
+    },
+    {
+        "question": "Mostre os 5 bairros com mais de 5.000 domicílios particulares",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_private_households > 5000 RETURN COUNT(n) AS total_bairros LIMIT 5"
+    },
+    {
+        "question": "Quantos bairros possuem mais de 5.000 domicílios particulares?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_private_households > 5000 RETURN COUNT(n) AS total_bairros"
+    },
+    {
+        "question": "Qual é a soma de bairros com mais de 5.000 domicílios particulares?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_private_households > 5000 RETURN COUNT(n) AS total_bairros"
+    },
+    {
+        "question": "Qual é a média de bairros com mais de 5.000 domicílios particulares?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_private_households > 5000 RETURN AVG(n.total_private_households) AS avg_bairros"
+    },
+    {
+        "question": "Qual é o bairro com menor número de bairros com mais de 5.000 domicílios particulares?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_private_households > 5000 RETURN n.name, COUNT(n) AS total_bairros ORDER BY total_bairros ASC LIMIT 1"
+    },
+    {
+        "question": "Qual é o bairro com o maior número de domicílios particulares?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood) RETURN n.name, n.total_private_households ORDER BY n.total_private_households DESC LIMIT 1"
+    },
+    {
+        "question": "Quantos bairros possuem mais de 5.000 domicílios particulares?",
+        "intention": "aggregate_nodes",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.total_private_households > 5000 RETURN COUNT(n) AS total_bairros"
+    },
+    {
+        "question": "Quais tipos de lugares existem no bairro Vila Gilda, considerando apenas lugares com rating superior a 4?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'})-[:CONTAINS]->(p:Place) WHERE p.rating > 4 RETURN DISTINCT p.type"
+    },
+    {
+        "question": "Liste os tipos de lugares do bairro Vila Gilda em ordem alfabética",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'})-[:CONTAINS]->(p:Place) RETURN DISTINCT p.type ORDER BY p.type"
+    },
+    {
+        "question": "Mostre apenas os 5 tipos de lugares existentes no bairro Vila Gilda",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'})-[:CONTAINS]->(p:Place) RETURN DISTINCT p.type LIMIT 5"
+    },
+    {
+        "question": "Quantos tipos de lugares existem no bairro Vila Gilda?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'})-[:CONTAINS]->(p:Place) RETURN COUNT(DISTINCT p.type) AS total_types"
+    },
+    {
+        "question": "Qual é a soma de tipos de lugares existentes no bairro Vila Gilda?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'})-[:CONTAINS]->(p:Place) RETURN SUM(DISTINCT p.type) AS total_types"
+    },
+    {
+        "question": "Qual é a média de tipos de lugares existentes no bairro Vila Gilda?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'})-[:CONTAINS]->(p:Place) RETURN AVG(DISTINCT p.type) AS avg_type"
+    },
+    {
+        "question": "Qual é o tipo de lugar menos representado no bairro Vila Gilda?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'})-[:CONTAINS]->(p:Place) RETURN MIN(DISTINCT p.type)"
+    },
+    {
+        "question": "Qual é o tipo de lugar mais frequente no bairro Vila Gilda?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'})-[:CONTAINS]->(p:Place) RETURN MAX(COLLECT(p.type))"
+    },
+    {
+        "question": "Quais tipos de lugares existem no bairro Vila Gilda?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'})-[:CONTAINS]->(p:Place) RETURN DISTINCT p.type"
+    },
+    {
+        "question": "Liste apenas os tipos de estabelecimentos do bairro Campestre que possuem mais de 1000 habitantes",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place) WHERE n.population > 1000 RETURN DISTINCT p.type"
+    },
+    {
+        "question": "Liste os tipos de estabelecimentos do bairro Campestre em ordem alfabética",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place) RETURN DISTINCT p.type ORDER BY p.type"
+    },
+    {
+        "question": "Mostre os 5 tipos de estabelecimentos do bairro Campestre",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place) RETURN DISTINCT p.type LIMIT 5"
+    },
+    {
+        "question": "Quantos tipos de estabelecimentos existem no bairro Campestre?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place) RETURN COUNT(DISTINCT p.type) AS total_types"
+    },
+    {
+        "question": "Qual é a soma de tipos de estabelecimentos do bairro Campestre?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place) RETURN SUM(DISTINCT p.type) AS total_types"
+    },
+    {
+        "question": "Qual é a média de tipos de estabelecimentos do bairro Campestre?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place) RETURN AVG(DISTINCT p.type) AS avg_type"
+    },
+    {
+        "question": "Qual é o tipo de estabelecimento menos comum no bairro Campestre?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place) RETURN MIN(DISTINCT p.type)"
+    },
+    {
+        "question": "Qual é o tipo de estabelecimento mais frequente no bairro Campestre?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place) RETURN MAX(COLLECT(p.type))"
+    },
+    {
+        "question": "Liste todos os tipos de estabelecimentos do bairro Campestre",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood {name: 'Campestre'})-[:CONTAINS]->(p:Place) RETURN DISTINCT p.type"
+    },
+    {
+        "question": "Qual é a diferença entre a taxa de alfabetização do bairro com a maior e menor população?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood) WHERE n.population = (SELECT MAX(population) FROM (MATCH (n:Neighborhood) RETURN n.population)) OR n.population = (SELECT MIN(population) FROM (MATCH (n:Neighborhood) RETURN n.population)) RETURN n.literacy_rate"
+    },
+    {
+        "question": "Ordene as taxas de alfabetização dos bairros em ordem crescente",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood) RETURN DISTINCT n.literacy_rate ORDER BY n.literacy_rate"
+    },
+    {
+        "question": "Mostre as 5 principais taxas de alfabetização entre os bairros",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood) RETURN DISTINCT n.literacy_rate LIMIT 5"
+    },
+    {
+        "question": "Quantas taxas de alfabetização diferentes existem nos bairros?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood) RETURN COUNT(DISTINCT n.literacy_rate) AS total_literacy_rates"
+    },
+    {
+        "question": "Qual é a soma das taxas de alfabetização de todos os bairros?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood) RETURN SUM(n.literacy_rate) AS total_literacy_rate"
+    },
+    {
+        "question": "Qual é a média das taxas de alfabetização entre os bairros?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood) RETURN AVG(n.literacy_rate) AS avg_literacy_rate"
+    },
+    {
+        "question": "Qual é a menor taxa de alfabetização entre os bairros?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood) RETURN MIN(n.literacy_rate) AS min_literacy_rate"
+    },
+    {
+        "question": "Qual é a maior diferença de taxas de alfabetização entre os bairros?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood) RETURN MAX(n.literacy_rate) - MIN(n.literacy_rate) AS max_diff"
+    },
+    {
+        "question": "Quais são as diferentes taxas de alfabetização entre os bairros?",
+        "intention": "distinct_values",
+        "cypher": "MATCH (n:Neighborhood) RETURN DISTINCT n.literacy_rate"
+    },
+    {
+        "question": "Quais clínicas veterinárias estão próximas aos petshops do bairro Jardim com população maior que 1000 habitantes?",
+        "intention": "related_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim', population: 1000})-[:CONTAINS]->(p:Place {type: 'pet_store'})MATCH (p)-[:NEAR]->(i:Intersection)<-[:NEAR]-(v:Place {type: 'veterinary_care'})RETURN DISTINCT v.name"
+    },
+    {
+        "question": "Liste as clínicas veterinárias próximas aos petshops do bairro Jardim em ordem alfabética",
+        "intention": "related_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'})MATCH (p)-[:NEAR]->(i:Intersection)<-[:NEAR]-(v:Place {type: 'veterinary_care'})RETURN DISTINCT v.name ORDER BY v.name"
+    },
+    {
+        "question": "Mostre as 5 clínicas veterinárias mais próximas aos petshops do bairro Jardim",
+        "intention": "related_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'})MATCH (p)-[:NEAR]->(i:Intersection)<-[:NEAR]-(v:Place {type: 'veterinary_care'})RETURN DISTINCT v.name LIMIT 5"
+    },
+    {
+        "question": "Quantas clínicas veterinárias estão próximas aos petshops do bairro Jardim?",
+        "intention": "related_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'})MATCH (p)-[:NEAR]->(i:Intersection)<-[:NEAR]-(v:Place {type: 'veterinary_care'})RETURN COUNT(DISTINCT v.name) AS total_clinicas"
+    },
+    {
+        "question": "Qual é a soma de clínicas veterinárias próximas aos petshops do bairro Jardim?",
+        "intention": "related_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'})MATCH (p)-[:NEAR]->(i:Intersection)<-[:NEAR]-(v:Place {type: 'veterinary_care'})RETURN SUM(DISTINCT v.num_reviews) AS total_clinicas"
+    },
+    {
+        "question": "Qual é a média de rating das clínicas veterinárias próximas aos petshops do bairro Jardim?",
+        "intention": "related_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'})MATCH (p)-[:NEAR]->(i:Intersection)<-[:NEAR]-(v:Place {type: 'veterinary_care'})RETURN AVG(v.rating) AS avg_rating"
+    },
+    {
+        "question": "Qual é a clínica veterinária com menor rating mais próxima aos petshops do bairro Jardim?",
+        "intention": "related_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'})MATCH (p)-[:NEAR]->(i:Intersection)<-[:NEAR]-(v:Place {type: 'veterinary_care'})RETURN v.name, v.rating ORDER BY v.rating ASC LIMIT 1"
+    },
+    {
+        "question": "Qual é a clínica veterinária mais próxima aos petshops do bairro Jardim?",
+        "intention": "related_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'})MATCH (p)-[:NEAR]->(i:Intersection)<-[:NEAR]-(v:Place {type: 'veterinary_care'})RETURN v.name ORDER BY v.name DESC LIMIT 1"
+    },
+    {
+        "question": "Quais clínicas veterinárias estão próximas aos petshops do bairro Jardim?",
+        "intention": "related_nodes",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'})MATCH (p)-[:NEAR]->(i:Intersection)<-[:NEAR]-(v:Place {type: 'veterinary_care'})RETURN DISTINCT v.name"
+    },
+    {
+        "question": "Qual é a distância entre o bairro Jardim e o bairro Campestre, considerando apenas bairros com população maior que 1000 habitantes?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Jardim', population: 1000}), (b:Neighborhood {name: 'Campestre', population: 1000}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters"
+    },
+    {
+        "question": "Ordene a distância entre o bairro Jardim e o bairro Campestre de forma crescente",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Jardim'}), (b:Neighborhood {name: 'Campestre'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters ORDER BY distance_meters ASC"
+    },
+    {
+        "question": "Mostre a distância entre o bairro Jardim e o bairro Campestre, considerando apenas a primeira distância encontrada",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Jardim'}), (b:Neighborhood {name: 'Campestre'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters LIMIT 1"
+    },
+    {
+        "question": "Quantas vezes a distância entre o bairro Jardim e o bairro Campestre é calculada?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Jardim'}), (b:Neighborhood {name: 'Campestre'}) RETURN COUNT(point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon}))) AS distance_count"
+    },
+    {
+        "question": "Qual é a soma das distâncias entre o bairro Jardim e todos os outros bairros?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place)<-[:CONTAINS]-(b:Neighborhood) RETURN SUM(point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon}))) AS total_distance_meters"
+    },
+    {
+        "question": "Qual é a média das distâncias entre o bairro Jardim e todos os outros bairros?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Jardim'}), (b:Neighborhood) WHERE a <> b RETURN AVG(point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon}))) AS avg_distance_meters"
+    },
+    {
+        "question": "Qual é a menor distância entre o bairro Jardim e algum outro bairro?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Jardim'}), (b:Neighborhood) WHERE a <> b RETURN MIN(point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon}))) AS min_distance_meters"
+    },
+    {
+        "question": "Qual é o maior petshop do bairro Jardim?",
+        "intention": "distance",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.rating ORDER BY p.rating DESC LIMIT 1"
+    },
+    {
+        "question": "Qual é a distância entre o bairro Jardim e o bairro Campestre?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Jardim'}), (b:Neighborhood {name: 'Campestre'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters"
+    },
+    {
+        "question": "Qual a distância em linha reta entre o bairro Vila Bastos e o bairro Centro, considerando apenas bairros com população maior que 1000 habitantes?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Bastos'}), (b:Neighborhood {name: 'Centro'}) WHERE a.population > 1000 AND b.population > 1000 RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters"
+    },
+    {
+        "question": "Ordene a distância em linha reta entre o bairro Vila Bastos e o bairro Centro em ordem crescente",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Bastos'}), (b:Neighborhood {name: 'Centro'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters ORDER BY distance_meters"
+    },
+    {
+        "question": "Qual a distância em linha reta entre o bairro Vila Bastos e o bairro Centro, considerando apenas a primeira distância encontrada?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Bastos'}), (b:Neighborhood {name: 'Centro'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters LIMIT 1"
+    },
+    {
+        "question": "Quantos bairros existem com distância em linha reta entre eles e o bairro Vila Bastos?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Bastos'}), (b:Neighborhood) RETURN COUNT(b) AS total_bairros"
+    },
+    {
+        "question": "Qual é a soma das distâncias em linha reta entre o bairro Vila Bastos e todos os outros bairros?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Bastos'}), (b:Neighborhood) WHERE a <> b RETURN SUM(point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon}))) AS total_distance_meters"
+    },
+    {
+        "question": "Qual a média da distância em linha reta entre o bairro Vila Bastos e todos os outros bairros?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Bastos'}), (b:Neighborhood) WHERE b.name <> 'Vila Bastos' RETURN AVG(point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon}))) AS avg_distance_meters"
+    },
+    {
+        "question": "Qual é a menor distância em linha reta entre o bairro Vila Bastos e o bairro Centro?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Bastos'}), (b:Neighborhood {name: 'Centro'}) RETURN MIN(point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon}))) AS min_distance_meters"
+    },
+    {
+        "question": "Qual é o maior valor de distância em linha reta entre o bairro Vila Bastos e qualquer outro bairro?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Bastos'}), (b:Neighborhood) WHERE a <> b RETURN MAX(point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS max_distance_meters"
+    },
+    {
+        "question": "Qual a distância em linha reta entre o bairro Vila Bastos e o bairro Centro?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Bastos'}), (b:Neighborhood {name: 'Centro'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters"
+    },
+    {
+        "question": "Qual é a distância entre o bairro Vila Assunção e o bairro Centro, considerando apenas bairros com população maior que 1000 habitantes?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Assunção', population: 1000}), (b:Neighborhood {name: 'Centro', population: 1000}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters"
+    },
+    {
+        "question": "Qual é a distância entre o bairro Vila Assunção e o bairro Centro, ordenada de forma crescente?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Assunção'}), (b:Neighborhood {name: 'Centro'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters ORDER BY distance_meters"
+    },
+    {
+        "question": "Mostre a distância entre o bairro Vila Assunção e o bairro Centro, considerando apenas a primeira parte da resposta",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Assunção'}), (b:Neighborhood {name: 'Centro'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters LIMIT 1"
+    },
+    {
+        "question": "Quantos bairros estão separados por um determinado número de metros?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Assunção'}), (b:Neighborhood {name: 'Centro'}) RETURN COUNT(point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon}))) AS total_distances"
+    },
+    {
+        "question": "Qual é a soma da distância entre cada bairro e o bairro Centro?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Centro'}), (b:Neighborhood) RETURN SUM(point.distance(point({latitude: b.centroid_lat, longitude: b.centroid_lon}), point({latitude: a.centroid_lat, longitude: a.centroid_lon}))) AS total_distance"
+    },
+    {
+        "question": "Qual é a média da distância entre o bairro Vila Assunção e o bairro Centro?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Assunção'}), (b:Neighborhood {name: 'Centro'}) RETURN AVG(point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon}))) AS avg_distance_meters"
+    },
+    {
+        "question": "Qual é a menor distância entre o bairro Vila Assunção e o bairro Centro?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Assunção'}), (b:Neighborhood {name: 'Centro'}) RETURN MIN(point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon}))) AS min_distance_meters"
+    },
+    {
+        "question": "Qual é a maior distância entre um petshop e o bairro Jardim?",
+        "intention": "distance",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'})-[:NEAR]->(i:Intersection)-[:ROAD]->(r:Road)-[:CONTAINS]->(b:Neighborhood) WHERE b.name = 'Jardim' RETURN MAX(point.distance(point({latitude: p.latitude, longitude: p.longitude}), point({latitude: b.centroid_lat, longitude: b.centroid_lon}))) AS max_distance_meters"
+    },
+    {
+        "question": "Quantos metros separam o bairro Vila Assunção do bairro Centro?",
+        "intention": "distance",
+        "cypher": "MATCH (a:Neighborhood {name: 'Vila Assunção'}), (b:Neighborhood {name: 'Centro'}) RETURN point.distance(point({latitude: a.centroid_lat, longitude: a.centroid_lon}), point({latitude: b.centroid_lat, longitude: b.centroid_lon})) AS distance_meters"
+    },
+    {
+        "question": "Quais são os dados socioeconômicos do bairro Vila Bastos, considerando apenas os bairros com população maior que 1000 habitantes?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'}) WHERE n.total_resident_population > 1000 RETURN n.name, n.average_monthly_income, n.literacy_rate, n.total_resident_population"
+    },
+    {
+        "question": "Ordene os dados socioeconômicos do bairro Vila Bastos em ordem alfabética",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'}) RETURN n.name, n.average_monthly_income, n.literacy_rate, n.total_resident_population ORDER BY n.name"
+    },
+    {
+        "question": "Mostre os 4 primeiros dados socioeconômicos do bairro Vila Bastos",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'}) RETURN n.name, n.average_monthly_income, n.literacy_rate, n.total_resident_population LIMIT 4"
+    },
+    {
+        "question": "Quantos bairros têm dados socioeconômicos disponíveis?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood) RETURN COUNT(n) AS total_bairros"
+    },
+    {
+        "question": "Qual é a soma dos rendimentos médios mensais de todos os bairros?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood) RETURN SUM(n.average_monthly_income) AS total_income"
+    },
+    {
+        "question": "Qual é a média do rendimento mensal dos bairros com população residente maior que 1000 habitantes?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {total_resident_population: {gt: 1000}}) RETURN AVG(n.average_monthly_income) AS avg_income"
+    },
+    {
+        "question": "Qual é o menor valor de renda média mensal do bairro Vila Bastos?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'}) RETURN MIN(n.average_monthly_income) AS min_income"
+    },
+    {
+        "question": "Qual é o maior valor de renda média mensal dos bairros que contêm petshops?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood)-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN MAX(n.average_monthly_income) AS max_income"
+    },
+    {
+        "question": "Quais são os dados socioeconômicos do bairro Vila Bastos?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Bastos'}) RETURN n.name, n.average_monthly_income, n.literacy_rate, n.total_resident_population"
+    },
+    {
+        "question": "Mostre os indicadores demográficos do bairro Vila Gilda, apenas se ele tiver uma população com renda maior que 5000",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'}) WHERE n.population_with_income > 5000 RETURN n.name, n.total_resident_population, n.total_private_households, n.population_with_income"
+    },
+    {
+        "question": "Ordene os indicadores demográficos do bairro Vila Gilda em ordem crescente",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'}) RETURN n.name, n.total_resident_population, n.total_private_households, n.population_with_income ORDER BY n.total_resident_population"
+    },
+    {
+        "question": "Mostre os 5 primeiros indicadores demográficos do bairro Vila Gilda",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'}) RETURN n.name, n.total_resident_population, n.total_private_households, n.population_with_income LIMIT 5"
+    },
+    {
+        "question": "Quantos indicadores demográficos existem no bairro Vila Gilda?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'}) RETURN COUNT(n) AS total_indicators"
+    },
+    {
+        "question": "Qual é a soma dos indicadores demográficos do bairro Vila Gilda?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'}) RETURN SUM(n.total_resident_population) AS total_resident_population, SUM(n.total_private_households) AS total_private_households, SUM(n.population_with_income) AS population_with_income"
+    },
+    {
+        "question": "Qual é a média dos indicadores demográficos do bairro Vila Gilda?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'}) RETURN AVG(n.total_resident_population), AVG(n.total_private_households), AVG(n.population_with_income)"
+    },
+    {
+        "question": "Qual é o menor indicador demográfico do bairro Vila Gilda?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'}) RETURN MIN(n.total_resident_population), MIN(n.total_private_households), MIN(n.population_with_income)"
+    },
+    {
+        "question": "Qual é o indicador demográfico mais alto do bairro Vila Gilda?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'}) RETURN MAX(n.total_resident_population), MAX(n.total_private_households), MAX(n.population_with_income)"
+    },
+    {
+        "question": "Mostre os indicadores demográficos do bairro Vila Gilda",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Gilda'}) RETURN n.name, n.total_resident_population, n.total_private_households, n.population_with_income"
+    },
+    {
+        "question": "Qual é a população total do bairro Vila Assunção?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Assunção'}) RETURN n.total_resident_population WHERE n.total_resident_population > 0"
+    },
+    {
+        "question": "Ordene as informações básicas do bairro Vila Assunção em ordem alfabética",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Assunção'}) RETURN n.name, n.area_km2, n.total_resident_population, n.total_literate_population ORDER BY n.name"
+    },
+    {
+        "question": "Mostre as 5 primeiras informações básicas do bairro Vila Assunção",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Assunção'}) RETURN n.name, n.area_km2, n.total_resident_population, n.total_literate_population LIMIT 5"
+    },
+    {
+        "question": "Quantas informações básicas existem sobre o bairro Vila Assunção?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Assunção'}) RETURN COUNT(n) AS total_info"
+    },
+    {
+        "question": "Qual é a soma das populações residentes de todos os bairros?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood) RETURN SUM(n.total_resident_population) AS total_resident_population"
+    },
+    {
+        "question": "Qual é a média da área dos bairros da cidade?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood) RETURN AVG(n.area_km2) AS avg_area"
+    },
+    {
+        "question": "Qual é o menor valor de área km² de um bairro?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood) RETURN MIN(n.area_km2) AS min_area"
+    },
+    {
+        "question": "Qual é o bairro com maior população residente?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood) RETURN n.name, n.total_resident_population ORDER BY n.total_resident_population DESC LIMIT 1"
+    },
+    {
+        "question": "Liste as informações básicas do bairro Vila Assunção",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Vila Assunção'}) RETURN n.name, n.area_km2, n.total_resident_population, n.total_literate_population"
+    },
+    {
+        "question": "Qual é a clínica veterinária Paco & Sua Turminha que tem mais de 1000 avaliações?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'Paco & Sua Turminha'}) WHERE p.num_reviews > 1000 RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id"
+    },
+    {
+        "question": "Ordene os dados da clínica veterinária Paco & Sua Turminha por ordem alfabética",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'Paco & Sua Turminha'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id ORDER BY p.name"
+    },
+    {
+        "question": "Mostre os 6 primeiros dados completos da clínica veterinária Paco & Sua Turminha",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'Paco & Sua Turminha'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id LIMIT 6"
+    },
+    {
+        "question": "Quantos dados completos da clínica veterinária Paco & Sua Turminha existem?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'Paco & Sua Turminha'}) RETURN COUNT(p) AS total_data"
+    },
+    {
+        "question": "Qual é a soma de reviews de todos os petshops do bairro onde fica a clínica veterinária Paco & Sua Turminha?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'Paco & Sua Turminha'})-[:CONTAINS]->(n:Neighborhood)-[:CONTAINS]->(pet:Place {type: 'pet_store'}) RETURN SUM(pet.num_reviews) AS total_reviews"
+    },
+    {
+        "question": "Qual é a média de rating das clínicas veterinárias do bairro onde fica a clínica veterinária Paco & Sua Turminha?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood)-[:CONTAINS]->(p:Place {name: 'Paco & Sua Turminha'})-[:NEAR]->(i:Intersection)-[:ROAD]->(r:Road)-[:CONTAINS]->(n2:Neighborhood) WHERE n <> n2 MATCH (n2)-[:CONTAINS]->(q:Place {type: 'veterinary_care'}) RETURN AVG(q.rating) AS avg_rating"
+    },
+    {
+        "question": "Qual é o menor rating de uma clínica veterinária no bairro Jardim?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) RETURN MIN(p.rating) AS min_rating"
+    },
+    {
+        "question": "Qual é o petshop com maior rating no bairro onde fica a clínica veterinária Paco & Sua Turminha?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood)-[:CONTAINS]->(p:Place {name: 'Paco & Sua Turminha'})-[:CONTAINS]->(q:Place {type: 'pet_store'}) RETURN q.name, q.rating ORDER BY q.rating DESC LIMIT 1"
+    },
+    {
+        "question": "Quais são os dados completos da clínica veterinária Paco & Sua Turminha?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'Paco & Sua Turminha'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id"
+    },
+    {
+        "question": "Qual é o petshop Patokinhas PetClub se ele tiver mais de 1000 habitantes no bairro?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'Patokinhas PetClub'})-[:NEAR]->(i:Intersection)-[:ROAD]->(r:Road)-[:CONTAINS]->(n:Neighborhood) WHERE n.population > 1000 RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id"
+    },
+    {
+        "question": "Liste os detalhes dos petshops do bairro Jardim em ordem alfabética",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id ORDER BY p.name"
+    },
+    {
+        "question": "Mostre apenas os detalhes dos 5 primeiros petshops",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'Patokinhas PetClub'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id LIMIT 5"
+    },
+    {
+        "question": "Quantos detalhes de petshops existem no bairro?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood)-[:CONTAINS]->(p:Place) RETURN COUNT(p) AS total_details"
+    },
+    {
+        "question": "Qual é a soma de reviews de todos os petshops do bairro que contém o petshop Patokinhas PetClub?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'Patokinhas PetClub'})-[:CONTAINS*1..]->(n:Neighborhood)-[:CONTAINS]->(q:Place {type: 'pet_store'}) RETURN SUM(q.num_reviews) AS total_reviews"
+    },
+    {
+        "question": "Qual é a média de rating dos petshops do bairro onde está localizado o Patokinhas PetClub?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'Patokinhas PetClub'})-[:NEAR]->(n:Neighborhood)-[:CONTAINS]->(q:Place {type: 'pet_store'}) RETURN AVG(q.rating) AS avg_rating"
+    },
+    {
+        "question": "Qual é o petshop com menor rating no bairro que contém o Patokinhas PetClub?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood)-[:CONTAINS]->(p:Place {name: 'Patokinhas PetClub'})-[:CONTAINS]->(q:Place {type: 'pet_store'}) RETURN q.name, MIN(q.rating) AS min_rating"
+    },
+    {
+        "question": "Qual é o petshop com o maior número de reviews no bairro Jardim?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, MAX(p.num_reviews) AS max_reviews"
+    },
+    {
+        "question": "Quais são os detalhes do petshop Patokinhas PetClub?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'Patokinhas PetClub'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id"
+    },
+    {
+        "question": "Qual é a clínica veterinária VetAmigo se ela tem mais de 1000 avaliações?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'VetAmigo', type: 'veterinary_care'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id WHERE p.num_reviews > 1000"
+    },
+    {
+        "question": "Liste os detalhes das clínicas veterinárias do bairro Jardim em ordem alfabética",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id ORDER BY p.name"
+    },
+    {
+        "question": "Mostre apenas os detalhes da clínica veterinária VetAmigo",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'VetAmigo'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id LIMIT 1"
+    },
+    {
+        "question": "Quantos detalhes de clínicas veterinárias existem?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {type: 'veterinary_care'}) RETURN COUNT(p) AS total_details"
+    },
+    {
+        "question": "Qual é a soma de reviews de todas as clínicas veterinárias do bairro onde fica a clínica VetAmigo?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'VetAmigo'})-[:NEAR]->(i:Intersection)-[:ROAD]->(r:Road)-[:CONTAINS]->(n:Neighborhood)-[:CONTAINS]->(v:Place {type: 'veterinary_care'}) RETURN SUM(v.num_reviews) AS total_reviews"
+    },
+    {
+        "question": "Qual é a média de rating das clínicas veterinárias do bairro onde fica a clínica VetAmigo?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood)-[:CONTAINS]->(p:Place {name: 'VetAmigo'})-[:NEAR]->(i:Intersection)-[:ROAD]->(r:Road)-[:CONTAINS]->(c:Place {type: 'veterinary_care'}) RETURN AVG(c.rating) AS avg_rating"
+    },
+    {
+        "question": "Qual é o menor rating de uma clínica veterinária no bairro Jardim?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'veterinary_care'}) RETURN MIN(p.rating) AS min_rating"
+    },
+    {
+        "question": "Qual é o petshop com o maior número de reviews no bairro Jardim?",
+        "intention": "node_info",
+        "cypher": "MATCH (n:Neighborhood {name: 'Jardim'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN p.name, p.num_reviews ORDER BY p.num_reviews DESC LIMIT 1"
+    },
+    {
+        "question": "Quais são os detalhes da clínica veterinária VetAmigo?",
+        "intention": "node_info",
+        "cypher": "MATCH (p:Place {name: 'VetAmigo'}) RETURN p.name, p.type, p.rating, p.latitude, p.longitude, p.num_reviews, p.place_id"
+    }
+]
