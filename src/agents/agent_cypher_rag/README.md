@@ -154,6 +154,8 @@ By maintaining a well-structured and comprehensive dataset, the RAG Cypher Agent
 
 ## Usage
 
+Each module in the RAG Cypher Agent comes with its own tester script, allowing users to experiment with or adjust specific components independently. This makes debugging, fine-tuning, and understanding the workflow easier.
+
 To test the pipeline, simply edit the user question in **rag_cypher_tester.py** and run the script.
 
 ### 1. Edit the question
