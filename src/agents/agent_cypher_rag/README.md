@@ -151,3 +151,167 @@ By maintaining a well-structured and comprehensive dataset, the RAG Cypher Agent
 > **Note:** This workflow reflects the approach I found effective for generating the dataset, though it may not be the only or optimal method.
 
 ---
+
+## Usage
+
+To test the pipeline, simply edit the user question in **rag_cypher_tester.py** and run the script.
+
+### 1. Edit the question
+Open `src/agents/agent_cypher_rag/rag_cypher_tester.py` and replace the example question:
+
+```python
+# ----------------------------
+# Entry point
+# ----------------------------
+if __name__ == "__main__":
+    # User question (edit this line)
+    user_question = "Quantos petshops existem no bairro Vila Luzita?"
+    
+    # Run RAG Cypher pipeline
+    results = run_rag_cypher_pipeline(user_question)
+
+    # Print pipeline outputs
+    print("Detected intentions:", results["detected_intentions"])
+    print("Matched Cypher queries:", results["matched_cyphers"])
+    print("Generated Cypher query:", results["generated_cypher"])
+    print("Corrected Cypher query:", results["corrected_cypher"])
+    print("Query results:", results["query_results"])
+    print("Final answer:", results["final_answer"])
+```
+
+### 2. Run the script
+From the `src` directory, execute:
+
+```python
+cd src
+python agents/agent_cypher_rag/rag_cypher_tester.py
+```
+
+### 3. See the results
+```python
+Detected intentions: ['aggregate_nodes']
+
+Matched Cypher queries: 
+[
+   "MATCH (n:Neighborhood)-[:CONTAINS]->(p:Place {type: 'pet_store'}) RETURN n.name, COUNT(p) AS total_petshops", 
+   "MATCH (n:Neighborhood {name: 'Vila Bastos'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) WHERE p.rating > 4 RETURN COUNT(p) AS total_petshops"
+]
+
+Generated Cypher query: 
+MATCH (n:Neighborhood {name: 'Vila Luzita'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) 
+RETURN COUNT(p) AS total_petshops
+
+Corrected Cypher query: 
+MATCH (n:Neighborhood {name: 'Vila Luzita'})-[:CONTAINS]->(p:Place {type: 'pet_store'}) 
+RETURN COUNT(p) AS total_petshops
+
+Query results: 
+[
+   {'total_petshops': 2}
+]
+
+Final answer: 
+"Existem 2 petshops no bairro Vila Luzita."
+```
+
+---
+
+## Architecture
+The **RAG Cypher Agent** integrates multiple components to convert natural language questions into executable Cypher queries and return structured answers. It uses a **retrieval-augmented generation (RAG)** approach combined with a Neo4j database.
+
+### Components
+
+1. **User Query**  
+   - Receives a natural language question from the user.
+   - Example: `"Mostre os petshops do bairro Jardim e os dados socieconômicos"`
+
+2. **Intent Detection** (`detect_intention`)  
+   - Uses the LLM to detect user intentions from the input question.
+   - Updates the agent state with `intent_detected`.
+
+3. **Cypher Matching** (`cypher_matching`)  
+   - Retrieves relevant pre-defined Cypher queries from a dataset based on detected intents.
+   - Uses **ChromaDB** + **sentence-transformers embeddings** to find the top matches.
+   - Updates `matched_cyphers` in the state.
+
+4. **Cypher Generation** (`generate_cypher_query`)  
+   - Generates a new Cypher query using the LLM guided by the matched examples.
+   - Updates `cypher_generated`.
+
+5. **Cypher Correction** (`correct_cypher_query`)  
+   - Applies fuzzy matching to generated Cypher queries and user questions, ensuring correct entity names using reference datasets.  
+   - Fixes typos or inconsistencies from user input or LLM generation.
+   - Updates `cypher_corrected` and `user_question_corrected`.
+
+6. **Neo4j Execution** (`neo4j_client.run_query`)  
+   - Runs the corrected Cypher query in Neo4j.
+   - Returns structured query results stored in `query_results`.
+
+7. **Answer Generation** (`generate_cypher_answer`)  
+   - Produces a clear natural language answer based on query results and the corrected question.
+   - Updates `final_response`.
+
+### Simplified Flow
+```python
+User Question
+↓
+Intent Detection → Cypher Matching → Cypher Generation → Cypher Correction → Neo4j Execution → Answer Generation → Final Response
+```
+
+### Notes
+- The agent maintains state using `MasterAgentState` and `CypherAgentState`.  
+- Each step handles errors gracefully to ensure the pipeline does not break.  
+- External modules are used for LLM interaction, query retrieval, and Neo4j operations.
+
+---
+
+## Sample Questions & Answers
+This section shows sample questions you can ask the RAG Cypher Agent and the kind of responses it produces. It also provides guidance on how to write effective queries.
+
+### How to Ask Questions
+- Be specific about the type of information you want (e.g., petshops, ratings, neighborhoods, socio-economic data).  
+- Formulate questions based on the graph structure, mentioning nodes (e.g., neighborhoods, places, intersections) and relationships (e.g., CONTAINS, HAS_REVIEW) to improve query accuracy.
+- The agent can handle typos and variations thanks to fuzzy matching in Cypher correction.
+
+### Example Interactions
+| User Question | Final Answer |
+|---------------|--------------|
+| "Qual bairro tem a maior taxa de alfabetização?" | "O bairro com a maior taxa de alfabetização é Vila Bastos, com uma taxa de 99,7%." |
+| "Quais locais oferecem serviço veterinário no bairro Vila Pires?" | "Os locais que oferecem serviço veterinário no bairro Vila Pires são: Samis Pet Clínica Veterinária, Mundo Rural Pet Shop e Clínica Veterinária Santo Andre e Villa Vet Clínica Veterinária." |
+| "Calcule a média de avaliações de petshops no bairro Jardim." | "A média de avaliações de petshops no bairro Jardim é 4,7." |
+| "Liste os petshops do bairro Vila Pires com avaliações acima de 4 estrelas" | "Existem os seguintes petshops no bairro Vila Pires com avaliações acima de 4 estrelas: Pet Shop Vila Pires (4.6 estrelas), Avicultura Kotori (4.6 estrelas), Vira Lactea - Espaço Pet Petshop em Santo André (4.9 estrelas), Mila Auau Estética Animal (4.8 estrelas) e Cãobeleireiro L'amour Pet (5.0 estrelas)" |
+| "Mostre os bairros com maior número de pet shops e suas médias de renda mensal." | "Os bairros com maior número de pet shops e suas médias de renda mensal são: Vila Pires com 10 pet shops e média de renda mensal de R$ 2.287,08, Jardim com 10 pet shops e média de renda mensal de R$ 5.850,56, Vila Camilópolis com 9 pet shops e média de renda mensal de R$ 1.699,73, Campestre com 9 pet shops e média de renda mensal de R$ 2.956,62 e Vila Metalúrgica com 9 pet shops e média de renda mensal de R$ 1.552,14" |
+| "Qual a distância do bairro Vila Pires até o bairro Vila Assunção?" | "A distância entre o bairro Vila Pires e o bairro Vila Assunção é aproximadamente 1,8 km." |
+| "Qual é o comprimento total das ruas no bairro Centro em km?" | "O comprimento total das ruas no bairro Centro é de 60,896 km." |
+| "Liste os pet shops do bairro Jardim com rating acima de 4 e mais de 10 reviews." | "Aqui estão os pet shops do bairro Jardim com rating acima de 4 e mais de 10 reviews: Pet Center Jardins, Ary dos Palhaços - Aquarismo Marinho, Vet Selvagem Pet Shop & Clinica Veterinaria e Pets Onaga - Unidade Jardim" |
+| "Qual o petshop mais próximo um do outro no bairro Vila Pires?" | "O petshop mais próximo de outro no bairro Vila Pires é o Tutu Pet Store e o Mila Auau Estética Animal, que estão muito próximos um do outro." |
+| "Quantas ruas tem o bairro Vila Assunção?" | "A Vila Assunção tem 916 ruas." |
+
+### Tips
+- Start with **general queries** if you are unsure of the dataset contents.  
+- Use **keywords** such as service types, neighborhood names, or ratings to narrow down results.  
+- The agent supports **multiple intents** in a single question, e.g., "Show petshops in Jardim with rating above 4 and more than 10 reviews.."  
+
+---
+
+## Key Takeaways
+
+- **Dataset Coverage Matters**: The quality of generated Cypher queries depends on having representative examples for all entity types (neighborhoods, roads, reviews, etc.).  
+- **Fuzzy Matching Helps but Has Trade-offs**: Typos are corrected automatically, but similar names can sometimes be misinterpreted.  
+- **Multi-intent Queries Supported**: The agent can handle multiple constraints in a single question (e.g., location + rating + service type).  
+- **Modular and Extensible**: Components like the retriever, Cypher correction, or LLM can be swapped or upgraded without redesigning the pipeline.  
+- **Performance Sensitive**: Execution time depends on ChromaDB retrieval and Neo4j indexing; large graphs may affect latency.
+- **Domain Transfer Potential**: Although tailored for Neo4j and Cypher, the same architecture can be applied to other graph-based domains with minimal changes.
+
+## Limitations
+
+- **Retriever Sensitivity**: If ChromaDB surfaces Cypher examples that are not semantically close to the user’s intent, the LLM may generate incorrect queries.  
+- **LLM Sensitivity**: Small wording changes in questions can lead to different Cypher outputs.  
+- **Error Propagation**: Mistakes in intent detection or retrieval propagate downstream, affecting final answers.  
+- **Dataset Coverage**: Queries involving entities or relationships poorly represented in the dataset are harder to resolve and may reduce accuracy.
+- **Complex Multi-hop Queries**: While supported, queries spanning many relationships can increase the chance of errors or incomplete answers.  
+- **Human-in-the-loop Needed**: Continuous dataset refinement is required to maintain performance.
+
+> These constraints highlight the importance of continuous iteration, but they also open opportunities to extend the system with stronger retrievers, schema-aware models, or hybrid approaches.
+
+---
