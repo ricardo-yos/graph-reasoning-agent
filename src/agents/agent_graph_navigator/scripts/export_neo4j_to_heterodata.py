@@ -1,24 +1,27 @@
 """
 Neo4j to PyTorch Geometric HeteroData Exporter
+==============================================
 
 This script connects to a Neo4j graph database, exports its nodes and relationships
 to a NetworkX graph, converts the graph into a PyTorch Geometric HeteroData object,
 saves the HeteroData to disk, and provides a function to inspect its contents.
 
-Key Features:
+Key Features
+------------
 - Node attributes are preserved and stored as lists.
 - Edge relationships are keyed by (source_type, relation_type, destination_type).
 - Supports readable inspection of nodes and edges for debugging or exploration.
 
-Dependencies:
+Dependencies
+------------
 - py2neo
 - networkx
 - torch
 - torch_geometric
 - numpy
 
-Usage:
-------
+Usage
+-----
 Run the script from the command line:
     python export_neo4j_to_heterodata.py
 """
