@@ -16,7 +16,7 @@ Dependencies
 - os, shutil, json (standard library)
 - chromadb
 - langchain_huggingface
-- config.paths (custom module providing RAG_DATA_DIR and VECTOR_DB_DIR)
+- config.paths (custom module providing RAG_DATA_DIR and VECTOR_DB_CYPHER_RAG)
 
 Expected JSON Format
 --------------------
@@ -39,7 +39,7 @@ Run the script directly to build the vector database:
 This will:
 1. Read the input file located at `RAG_DATA_DIR/rag_questions_cypher.json`
 2. Build embeddings for each question
-3. Persist the vector database in `VECTOR_DB_DIR`
+3. Persist the vector database in `VECTOR_DB_CYPHER_RAG`
 """
 
 import os
@@ -48,7 +48,7 @@ import json
 import chromadb
 from typing import List, Dict, Any
 from langchain_huggingface import HuggingFaceEmbeddings
-from config.paths import RAG_DATA_DIR, VECTOR_DB_DIR
+from config.paths import RAG_DATA_DIR, VECTOR_DB_CYPHER_RAG
 
 def build_vector_db(json_filepath: str, persist_path: str) -> None:
     """
@@ -115,6 +115,6 @@ def build_vector_db(json_filepath: str, persist_path: str) -> None:
 
 if __name__ == "__main__":
     json_filepath: str = os.path.join(RAG_DATA_DIR, "rag_questions_cypher.json")
-    persist_path: str = VECTOR_DB_DIR  # export vector DB to VECTOR_DB_DIR
+    persist_path: str = VECTOR_DB_CYPHER_RAG  # export vector DB to VECTOR_DB_CYPHER_RAG
 
     build_vector_db(json_filepath, persist_path)
