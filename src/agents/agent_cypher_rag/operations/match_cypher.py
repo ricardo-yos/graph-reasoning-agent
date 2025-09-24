@@ -11,7 +11,7 @@ Dependencies
 - typing (standard library)
 - langchain_huggingface
 - langchain_chroma
-- config.paths (providing VECTOR_DB_DIR)
+- config.paths (providing VECTOR_DB_CYPHER_RAG)
 
 Usage
 -----
@@ -27,7 +27,7 @@ Example:
 from typing import List
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
-from config.paths import VECTOR_DB_DIR
+from config.paths import VECTOR_DB_CYPHER_RAG
 
 def chroma_retriever(query_text: str, intent: str = None, top_k: int = 2) -> List[str]:
     """
@@ -57,7 +57,7 @@ def chroma_retriever(query_text: str, intent: str = None, top_k: int = 2) -> Lis
     collection = Chroma(
         collection_name="rag_cypher",
         embedding_function=embeddings,
-        persist_directory=VECTOR_DB_DIR,
+        persist_directory=VECTOR_DB_CYPHER_RAG,
     )
 
     # If intent is provided, append it to the query text
