@@ -9,11 +9,11 @@ Features
 --------
 - Converts natural language questions into embeddings using HuggingFace models.
 - Persists the embeddings and metadata (question, intention, Cypher) into Chroma.
-- Deletes any existing database before rebuilding.
+- Deletes the existing collection before rebuilding.
 
 Dependencies
 ------------
-- os, shutil, json (standard library)
+- os, json (standard library)
 - chromadb
 - langchain_huggingface
 - config.paths (custom module providing RAG_DATA_DIR and VECTOR_DB_CYPHER_RAG)
@@ -43,7 +43,6 @@ This will:
 """
 
 import os
-import shutil
 import json
 import chromadb
 from typing import List, Dict, Any
@@ -64,13 +63,8 @@ def build_vector_db(json_filepath: str, persist_path: str) -> None:
 
     Notes
     -----
-    - If a previous vector database exists at persist_path, it will be deleted.
+    - If a previous collection exists, it will be deleted before rebuilding.
     """
-    # Remove old vector database if it exists
-    if os.path.exists(persist_path):
-        print(f"Deleting existing vector DB at '{persist_path}'...")
-        shutil.rmtree(persist_path)
-
     # Load the dataset from JSON
     with open(json_filepath, encoding="utf-8") as f:
         data: List[Dict[str, Any]] = json.load(f)
@@ -83,8 +77,15 @@ def build_vector_db(json_filepath: str, persist_path: str) -> None:
     # Initialize Chroma client with persistence
     client = chromadb.PersistentClient(path=persist_path)
 
-    # Create or load a collection to store vectors
-    collection = client.get_or_create_collection(name="rag_cypher")
+    # Reset collection if it exists
+    collection_name = "rag_cypher"
+    existing_collections = [c.name for c in client.list_collections()]
+    if collection_name in existing_collections:
+        print(f"Deleting existing collection '{collection_name}'...")
+        client.delete_collection(name=collection_name)
+
+    # Create new collection
+    collection = client.get_or_create_collection(name=collection_name)
 
     # Iterate through dataset entries and insert them into Chroma
     for i, entry in enumerate(data):
