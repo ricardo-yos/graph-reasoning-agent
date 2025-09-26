@@ -1,5 +1,6 @@
 """
 Graph Reasoning Agent Constants
+===============================
 
 This module defines project-wide constants for the Graph Reasoning Agent,
 including configurations and reference data used throughout the system.
