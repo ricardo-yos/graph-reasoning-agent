@@ -1,6 +1,6 @@
 """
-Node Filtering Module for Graph Reasoning Agent
-===============================================
+Graph Node Filtering Module
+===========================
 
 This module provides functionality to filter nodes in a heterogeneous graph
 (`HeteroData`-like structure) based on specified attribute conditions. It uses
