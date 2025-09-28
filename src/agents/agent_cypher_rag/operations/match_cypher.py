@@ -104,7 +104,7 @@ def cypher_matching(user_question: str, intent: str = None, top_k: int = 2) -> L
         return []
 
 # --------------------------------------------------------
-# Entry point: run only if this file is executed directly
+# Test block: run only if this file is executed directly
 # --------------------------------------------------------
 
 if __name__ == "__main__":
