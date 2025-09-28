@@ -10,9 +10,9 @@ block using LLMManager.
 Dependencies
 ------------
 - json (standard library)
+- re (standard library)
 - langchain.schema
 - llm.llm_manager (for testing only)
-- config.env_loader (for testing only)
 
 Usage
 -----
@@ -23,12 +23,13 @@ Example:
 
     llm = LLMManager()
 
-    question = "Existem clínicas veterinárias na Vila Bastos que oferecem vacinação e serviços de banho para cães e gatos?"
+    question = "Quais pet shops existem no bairro Campestre que oferecem banho e tosa?"
 
     extracted_nodes = question_to_nodes(question, llm)
 """
 
 import json
+import re
 from langchain.schema import HumanMessage
 
 def question_to_nodes(question: str, llm) -> dict:
@@ -46,47 +47,64 @@ def question_to_nodes(question: str, llm) -> dict:
     Returns
     -------
     dict
-        Dictionary keyed by node type with a list of node attributes. Keys include:
-        'Neighborhood', 'Place', 'Road', 'Intersection', 'RAG'.
+        Dictionary keyed by node type with a list of node attributes. Keys may include:
+        'Neighborhood', 'Place', 'Road', 'Intersection', 'RAG'. 
+        Only non-empty keys are returned.
 
     Notes
     -----
     - For Place nodes, the type must be either 'pet_store' or 'veterinary_care'.
-    - Returns empty lists for node types not found in the question.
+    - If parsing fails, the entire question is placed under "RAG".
     """
     prompt = f"""
     Instructions:
     1. Extract only the relevant nodes and their attributes from the question.
-    2. If a part of the question does not match any node, put it under "RAG" with key "text", only include de main theme.
+    2. If a part of the question does not match any node, put it under "RAG" with key "text", only include the main theme.
     3. Return JSON only, omit empty attributes and empty lists.
     4. Note: For Place nodes, the type must be either 'pet_store' or 'veterinary_care'.
 
-    Format example:
+    Format examples:
+
+    Example 1 (for the question: "Existem clínicas veterinárias na Vila Bastos que oferecem vacinação e serviços de banho para cães e gatos?"):
     {{
-        "Neighborhood": [{{"name": "Jardim"}}],
+        "Neighborhood": [{{"name": "Vila Bastos"}}],
+        "Place": [{{"type": "veterinary_care"}}],
+        "RAG": [{{"text": "vacinação"}}, {{"text": "banho e tosa"}}, {{"text": "cães e gatos"}}]
+    }}
+
+    Example 2 (for the question: "Tem pet shops na Avenida Portugal que fazem banho para cães?"):
+    {{
         "Place": [{{"type": "pet_store"}}],
         "Road": [{{"name": "Avenida Portugal"}}],
-        "Intersection": [],
-        "RAG": [{{"text": "banho e tosa"}}]
+        "RAG": [{{"text": "banho para cães"}}]
     }}
 
     Question: "{question}"
     """
 
-    # Wrap the prompt into a HumanMessage for LangChain
     message = HumanMessage(content=prompt)
-    
-    # Query the LLM
     llm_response = llm.chat([message])
 
-    # Attempt to parse JSON from the LLM response
     try:
-        extracted_nodes = json.loads(llm_response.content.strip())
-    except json.JSONDecodeError:
-        # Fallback: put the whole question in RAG if parsing fails
-        extracted_nodes = {"RAG": [{"text": question}]}
+        # Extract only the JSON portion in case LLM adds extra text
+        json_text = re.search(r"\{.*\}", llm_response.content, re.DOTALL).group(0)
+        parsed = json.loads(json_text)
 
-    return extracted_nodes
+        # Validate Place types
+        if "Place" in parsed:
+            valid_places = {"pet_store", "veterinary_care"}
+            parsed["Place"] = [
+                p for p in parsed["Place"] if p.get("type") in valid_places
+            ]
+            # If all invalid, remove the key
+            if not parsed["Place"]:
+                parsed.pop("Place")
+
+        return parsed
+
+    except Exception:
+        # Fallback: return only RAG with the full question
+        return {"RAG": [{"text": question}]}
 
 # --------------------------------------------------------
 # Test block: run only if this file is executed directly
@@ -100,8 +118,8 @@ if __name__ == "__main__":
     llm = LLMManager()
 
     # Sample question for testing
-    question = "Existem clínicas veterinárias na Avenida Paulista que atendem cães e gatos?"
-
+    question = "Quais pet shops existem no bairro Campestre que oferecem banho e tosa?"
+    
     # Extract nodes from the question
     extracted_nodes = question_to_nodes(question, llm)
 
