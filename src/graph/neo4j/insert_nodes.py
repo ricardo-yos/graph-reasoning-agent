@@ -213,14 +213,13 @@ class Neo4jNodeInserter:
         Insert review nodes into the Neo4j graph.
 
         Each review node has properties such as review ID, author, rating, text content,
-        and optionally the review date.
+        date, and the associated place_id and place_name.
 
         Parameters
         ----------
         reviews : pandas.DataFrame
             DataFrame containing review data with columns:
-            'review_id', 'author', 'rating', 'text', and optionally 'date'.
-            If 'date' is missing or NaN, the property will be set to None.
+            'review_id', 'author', 'rating', 'text', 'date', 'place_id', 'place_name'.
         """
         
         data = [{
@@ -229,6 +228,8 @@ class Neo4jNodeInserter:
             "rating": row.get("rating"),
             "text": row.get("text"),
             "date": row.get("date"),
+            "place_id": row.get("place_id"),
+            "place_name": row.get("place_name"),
         } for _, row in reviews.iterrows() if pd.notna(row.get("review_id"))]
 
         self.graph.run("""
@@ -237,5 +238,7 @@ class Neo4jNodeInserter:
             SET r.author = row.author,
                 r.rating = row.rating,
                 r.text = row.text,
-                r.date = row.date
+                r.date = row.date,
+                r.place_id = row.place_id,
+                r.place_name = row.place_name
         """, data=data)
