@@ -2,30 +2,34 @@
 Build ChromaDB from HeteroData Reviews
 ======================================
 
-This script loads reviews from a PyTorch Geometric HeteroData object, 
-splits them into token-based chunks, generates embeddings using a 
-HuggingFace BERT-based Portuguese model, and stores them in a persistent 
-ChromaDB collection for efficient retrieval and similarity search.
+This script constructs a ChromaDB vector database from review data stored 
+in a PyTorch Geometric HeteroData object. It extracts review text, IDs, 
+ratings, and associated place information, splits texts into token-based 
+chunks, generates embeddings using a HuggingFace BERT-based Portuguese 
+model, and stores them in a persistent ChromaDB collection for efficient 
+retrieval and similarity search.
 
 Features
 --------
-- Extract 'text', 'review_id', and 'rating' from HeteroData nodes.
-- Split texts into token-based chunks while preserving metadata.
+- Extract 'text', 'review_id', 'rating', 'place_id', and 'place_name' from HeteroData.
+- Split review texts into token-based chunks while preserving metadata.
 - Generate embeddings for each chunk using BERT embeddings.
 - Store embeddings in a persistent ChromaDB collection.
-- Handles batch insertion to manage memory efficiently.
+- Supports batch insertion to manage memory efficiently.
 
 Usage
 -----
-Run the pipeline as a standalone script:
+Run the script directly:
     python build_review_chromadb.py
 
-Steps performed
----------------
+Pipeline Steps
+--------------
 1. Load the HeteroData file from `MODELS_DIR`.
-2. Split review texts into token chunks.
-3. Generate embeddings using HuggingFace BERT.
-4. Insert embeddings into a persistent ChromaDB collection at `VECTOR_DB_GRAPH_NAVIGATOR`.
+2. Extract review text, IDs, ratings, and place information.
+3. Split review texts into token-based chunks.
+4. Generate embeddings for each chunk using HuggingFace BERT.
+5. Insert chunks into a persistent ChromaDB collection at `VECTOR_DB_GRAPH_NAVIGATOR`.
+6. Persist the collection for future retrieval.
 """
 
 import os
@@ -43,7 +47,8 @@ from config.paths import MODELS_DIR, VECTOR_DB_GRAPH_NAVIGATOR
 
 def load_reviews(hetero_path: str) -> list:
     """
-    Load review texts, IDs, and ratings from a HeteroData object.
+    Load review texts, IDs, ratings, place_id and place_name 
+    from a HeteroData object.
 
     Parameters
     ----------
@@ -53,7 +58,8 @@ def load_reviews(hetero_path: str) -> list:
     Returns
     -------
     reviews : list
-        List of dictionaries containing 'text', 'review_id', and 'rating'.
+        List of dictionaries containing:
+        'text', 'review_id', 'rating', 'place_id', 'place_name'.
     """
     print(f"Loading HeteroData from: {hetero_path}")
 
@@ -64,7 +70,7 @@ def load_reviews(hetero_path: str) -> list:
     if "Review" not in hetero_data.node_types:
         raise ValueError("HeteroData does not contain 'Review' node type.")
 
-    required_attrs = ["text", "review_id", "rating"]
+    required_attrs = ["text", "review_id", "rating", "place_id", "place_name"]
     for attr in required_attrs:
         if not hasattr(hetero_data["Review"], attr):
             raise ValueError(f"Review nodes must have '{attr}' attribute.")
@@ -72,10 +78,20 @@ def load_reviews(hetero_path: str) -> list:
     texts = hetero_data["Review"].text
     review_ids = hetero_data["Review"].review_id
     ratings = hetero_data["Review"].rating
+    place_ids = hetero_data["Review"].place_id
+    place_names = hetero_data["Review"].place_name
 
     # Combine into a list of dictionaries
-    reviews = [{"text": t, "review_id": rid, "rating": r} 
-               for t, rid, r in zip(texts, review_ids, ratings)]
+    reviews = [
+        {
+            "text": t,
+            "review_id": rid,
+            "rating": r,
+            "place_id": pid,
+            "place_name": pname
+        }
+        for t, rid, r, pid, pname in zip(texts, review_ids, ratings, place_ids, place_names)
+    ]
 
     print(f"Loaded {len(reviews)} reviews.")
     return reviews
@@ -96,7 +112,8 @@ def chunk_reviews_by_tokens(
     Parameters
     ----------
     reviews : list
-        List of review dictionaries with 'text', 'review_id', 'rating'.
+        List of review dictionaries with 'text', 'review_id', 'rating',
+        'place_id', and 'place_name'.
     chunk_size : int
         Maximum number of tokens per chunk.
     chunk_overlap : int
@@ -123,7 +140,9 @@ def chunk_reviews_by_tokens(
         review_text = review["text"]
         metadata = {
             "review_id": review["review_id"],
-            "rating": review["rating"]
+            "rating": review.get("rating"),
+            "place_id": review.get("place_id"),
+            "place_name": review.get("place_name")
         }
 
         # Split review into chunks
