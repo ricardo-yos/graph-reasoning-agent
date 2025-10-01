@@ -117,7 +117,6 @@ class GraphNavigatorAgent:
 
         # 3 - Expand reviews with RAG
         rag_reviews = expand_reviews_with_rag(
-            hetero_data,
             extracted_nodes,
             result,
             top_k=5  # default number of retrieved reviews per query
