@@ -1,14 +1,23 @@
 """
-Review RAG Retriever
-====================
+Review RAG Retriever with Place Filtering
+=========================================
 
-This module provides functions to query ChromaDB with review texts and to expand
-reviews for filtered Places using a RAG (Retrieval-Augmented Generation) approach.
-It includes a default HuggingFace embedding model and example usage.
+This module provides functionality to query a ChromaDB vector store
+of review embeddings and expand reviews for filtered Places using 
+a Retrieval-Augmented Generation (RAG) approach.
+
+Features
+--------
+- Query ChromaDB with a text input.
+- Filter review chunks by `place_id` before similarity ranking.
+- Compute cosine similarity between query and embeddings.
+- Expand reviews for RAG queries only for valid Places.
 
 Dependencies
 ------------
-- typing (standard library)
+- typing
+- torch
+- numpy
 - langchain_huggingface
 - langchain_chroma
 - config.paths
@@ -18,133 +27,189 @@ Usage
 Example:
 
     from agents.agent_graph_navigator.operations.rag_reviews import expand_reviews_with_rag
-    from some_module import hetero_data, extracted_nodes, result
 
-    rag_reviews = expand_reviews_with_rag(
-        hetero_data=hetero_data,
-        extracted_nodes=extracted_nodes,
-        result=result,
-        top_k=5
-    )
+    # RAG queries
+    extracted_nodes = {"RAG": [{"text": "banho e tosa"}]}
+
+    # Filtered Places
+    result = {"Place": [{"attributes": {"place_id": "ChIJawigxnFCzpQRQW_XZ4K1ph8"}}]}
+
+    # Expand reviews
+    rag_reviews = expand_reviews_with_rag(extracted_nodes, result, top_k=5)
 """
 
 from typing import List, Dict, Any
+import torch
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from config.paths import VECTOR_DB_GRAPH_NAVIGATOR
+import numpy as np
 
-def query_reviews(
-    review_text: str,
-    top_k: int = None,
-    collection_name: str = "review_embeddings",
-    persist_dir: str = VECTOR_DB_GRAPH_NAVIGATOR,
-    embedding_model_name: str = "neuralmind/bert-base-portuguese-cased",
-    similarity_threshold: float = 0.7
+# -----------------------------
+# Query ChromaDB and filter by place_id
+# -----------------------------
+
+def query_reviews_filtered(
+    query_text: str,
+    valid_place_ids: set,
+    top_k: int = 5,
+    embedding_model_name: str = "neuralmind/bert-base-portuguese-cased"
 ) -> List[Dict[str, Any]]:
     """
-    Query ChromaDB with a review text and return the top similar chunks.
-    Sets up the retriever internally, including default TOP_K and similarity threshold.
+    Query ChromaDB for review chunks and filter results by `place_id`.
+
+    This function retrieves all stored chunks from the Chroma collection,
+    filters them based on the set of valid `place_id`s, computes cosine
+    similarity between the query and the chunk embeddings, and returns
+    the top_k most similar chunks.
 
     Parameters
     ----------
-    review_text : str
-        Text of the review to query.
-    top_k : int, optional
-        Number of top results to return (defaults to 5).
-    collection_name : str, optional
-        Name of the Chroma collection.
-    persist_dir : str, optional
-        Directory where the Chroma collection is persisted.
-    embedding_model_name : str, optional
-        Name of the HuggingFace embedding model to use.
-    similarity_threshold : float, optional
-        Minimum similarity threshold for results (currently placeholder, can be used later).
+    query_text : str
+        Input text to query ChromaDB.
+    valid_place_ids : set
+        Set of allowed place IDs to filter results.
+    top_k : int, default=5
+        Number of most similar chunks to return.
+    embedding_model_name : str
+        HuggingFace model name for embedding computation.
 
     Returns
     -------
-    List[Dict[str, Any]]
-        List of dicts with 'text' and 'metadata'.
+    List[dict]
+        List of dictionaries containing:
+        - 'text': chunk text
+        - 'metadata': chunk metadata (review_id, place_id, place_name, etc.)
+        - 'score': cosine similarity score
     """
-    if top_k is None:
-        top_k = 5
+    # Select device for embeddings
+    device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    # Setup embedding and Chroma collection
-    embedding_fn = HuggingFaceEmbeddings(model_name=embedding_model_name)
-    collection = Chroma(
-        collection_name=collection_name,
-        embedding_function=embedding_fn,
-        persist_directory=persist_dir
+    # Initialize HuggingFace embeddings
+    embedder = HuggingFaceEmbeddings(
+        model_name=embedding_model_name,
+        model_kwargs={"device": device}
     )
 
-    # Perform similarity search
-    results = collection.similarity_search(review_text, k=top_k)
+    # Connect to Chroma collection
+    collection = Chroma(
+        collection_name="review_embeddings",
+        embedding_function=embedder,
+        persist_directory=VECTOR_DB_GRAPH_NAVIGATOR
+    )
 
-    # Format results
-    matches = [
-        {"text": doc.page_content, "metadata": doc.metadata}
-        for doc in results
+    # Retrieve all stored documents, metadata, and embeddings
+    stored = collection.get(include=["documents", "metadatas", "embeddings"])
+    documents = stored.get("documents", [])
+    metadatas = stored.get("metadatas", [])
+    embeddings = stored.get("embeddings", [])
+
+    # Filter chunks by valid place_ids
+    filtered_chunks = [
+        (doc, meta, emb)
+        for doc, meta, emb in zip(documents, metadatas, embeddings)
+        if str(meta.get("place_id")).strip() in valid_place_ids
     ]
 
-    return matches
+    if not filtered_chunks:
+        return []
+
+    # Separate filtered data
+    chunk_texts, chunk_metas, chunk_embs = zip(*filtered_chunks)
+    chunk_embs = np.array(chunk_embs)
+
+    # Compute embedding for the query
+    query_emb = np.array(embedder.embed_documents([query_text]))[0]
+
+    # Compute cosine similarity
+    scores = chunk_embs @ query_emb / (np.linalg.norm(chunk_embs, axis=1) * np.linalg.norm(query_emb) + 1e-10)
+
+    # Get top_k indices by similarity
+    top_indices = np.argsort(-scores)[:top_k]
+
+    # Prepare results
+    results = []
+    for idx in top_indices:
+        results.append({
+            "text": chunk_texts[idx],
+            "metadata": chunk_metas[idx],
+            "score": float(scores[idx])
+        })
+    return results
+
+# -----------------------------
+# Expand reviews using RAG
+# -----------------------------
 
 def expand_reviews_with_rag(
-    hetero_data, 
-    extracted_nodes, 
-    result, 
-    top_k: int = None
+    extracted_nodes: dict,
+    result: dict,
+    top_k: int = 5
 ) -> List[Dict[str, str]]:
     """
-    Expands reviews using RAG retrieval directly from ChromaDB metadata.
-    Returns review chunks with review_id, chunk_text, place_id and place_name.
+    Expand review chunks using RAG retrieval for filtered Places.
+
+    For each RAG node query, this function calls `query_reviews_filtered`
+    to retrieve top_k similar review chunks **only for valid Places**.
+    Duplicate review chunks are skipped.
 
     Parameters
     ----------
-    hetero_data : HeteroData
-        The heterogeneous graph data (not used here, kept for interface consistency).
     extracted_nodes : dict
-        Dictionary of extracted nodes including 'RAG' nodes with query texts.
+        Dictionary containing RAG queries under the "RAG" key.
     result : dict
-        Expanded nodes dict (not used here).
-    top_k : int, optional
-        Number of top retrieved reviews per query (defaults to query_reviews default).
+        Expanded graph nodes with Place attributes to validate place_ids.
+    top_k : int, default=5
+        Number of top review chunks to return per query.
 
     Returns
     -------
-    rag_reviews : list of dict
-        [
-            {"review_id": ..., "chunk_text": ..., "place_id": ..., "place_name": ...},
-            ...
-        ]
+    List[dict]
+        List of dictionaries containing:
+        - 'review_id': review identifier
+        - 'chunk_text': chunk of review text
+        - 'place_id': associated place_id
+        - 'place_name': associated place name
     """
-    if "RAG" not in extracted_nodes:
+    # Return empty if no RAG queries or Place nodes
+    if "RAG" not in extracted_nodes or "Place" not in result:
         return []
+
+    # Extract valid place_ids from expanded Place nodes
+    valid_place_ids = {
+        str(node.get("attributes", {}).get("place_id")).strip()
+        for node in result["Place"]
+        if node.get("attributes", {}).get("place_id")
+    }
 
     rag_reviews = []
     seen_reviews = set()
 
+    # Iterate over RAG query nodes
     for rag_node in extracted_nodes["RAG"]:
         query_text = rag_node.get("text")
         if not query_text:
             continue
 
-        # Query ChromaDB
-        query_results = query_reviews(review_text=query_text, top_k=top_k)
+        # Query filtered review chunks
+        query_results = query_reviews_filtered(
+            query_text=query_text,
+            valid_place_ids=valid_place_ids,
+            top_k=top_k
+        )
 
+        # Process results, skip duplicates
         for res in query_results:
-            metadata = res.get("metadata", {}) or {}
-            review_id = str(metadata.get("review_id"))
-            place_id = metadata.get("place_id")
-            place_name = metadata.get("place_name")
-
-            # Skip duplicates
-            if not review_id or review_id in seen_reviews:
+            meta = res.get("metadata", {}) or {}
+            review_id = str(meta.get("review_id"))
+            if review_id in seen_reviews:
                 continue
 
             rag_reviews.append({
                 "review_id": review_id,
                 "chunk_text": res.get("text"),
-                "place_id": place_id,
-                "place_name": place_name
+                "place_id": meta.get("place_id"),
+                "place_name": meta.get("place_name")
             })
             seen_reviews.add(review_id)
 
