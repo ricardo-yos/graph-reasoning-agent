@@ -98,7 +98,7 @@ class GraphNavigatorAgent:
         -------
         MasterAgentState
             Updated state with expanded nodes stored in `state.graph_state.expanded_nodes` 
-            and RAG reviews in `state.graph_state.RAG_reviews`.
+            and RAG reviews in `state.graph_state.rag_reviews`.
         """
         if state.graph_state is None or not state.graph_state.extracted_nodes:
             return state
@@ -124,7 +124,7 @@ class GraphNavigatorAgent:
 
         # Save expanded nodes and RAG reviews to state
         state.graph_state.expanded_nodes = result
-        state.graph_state.RAG_reviews = rag_reviews
+        state.graph_state.rag_reviews = rag_reviews
 
         return state
 
@@ -148,7 +148,7 @@ class GraphNavigatorAgent:
             return state
 
         extracted_nodes = state.graph_state.expanded_nodes or {}
-        rag_reviews = getattr(state.graph_state, "RAG_reviews", [])
+        rag_reviews = getattr(state.graph_state, "rag_reviews", [])
         question = state.user_question
 
         # Delegate answer generation to external function
