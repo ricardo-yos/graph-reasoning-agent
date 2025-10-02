@@ -74,7 +74,7 @@ def run_graph_navigator_pipeline(question: str, agent: GraphNavigatorAgent) -> N
     print(state.graph_state.expanded_nodes)
 
     # 4 - Print RAG reviews
-    rag_reviews = getattr(state.graph_state, "RAG_reviews", [])
+    rag_reviews = getattr(state.graph_state, "rag_reviews", [])
     print("\n[3 - RAG Reviews]")
 
     if rag_reviews:
