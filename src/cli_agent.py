@@ -16,7 +16,7 @@ Features
 
 Usage
 -----
-$ python run_master_agent_cli.py
+$ python -m cli_agent
 
 Then type questions interactively or 'exit'/'quit' to stop the program.
 """
