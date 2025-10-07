@@ -81,17 +81,37 @@ GROQ_API_KEY=<your_api_key_here>
 > **Note:** Keep this file private and never push it to GitHub.
 
 ### Required Data Files
-The following files must exist in your project’s data directory (e.g., `GRAPH_DATA_DIR`) for the **Graph Navigator Agent** to function properly:
+The following file must exist in your project’s data directory (e.g., `MODELS_DIR`) for the **Graph Navigator Agent** to function correctly:
 
-- `hetero_graph.pt`
-  Serialized **PyG HeteroData** graph containing nodes, relations, and attributes.
+- `neo4j_heterodata.pt`  
+  A serialized **PyG HeteroData** object containing all nodes, relationships, and attributes extracted from the Neo4j database, including review texts and metadata.
 
-- `review_texts.csv`
-  CSV file containing reviews associated with graph nodes, used for **RAG-based retrieval**.
+> **Note:** Make sure this file is generated and up-to-date before running the agent.
 
-- (Optional) `embedding_index`
-  Vector database (e.g., **ChromaDB** directory) storing embeddings for review texts.
+---
 
-> **Note:** Ensure these files are properly generated and up-to-date before running the agent.
+## Dataset Creation
+
+The **Graph Navigator Agent** relies on structured graph data derived from Neo4j to perform reasoning and RAG-based enrichment. The dataset creation process ensures that nodes, relations, and review texts are properly formatted for graph traversal and semantic retrieval.
+
+The graph is exported from Neo4j and stored as a **PyG HeteroData** object (`neo4j_heterodata.pt`).  
+It contains multiple types of nodes representing neighborhoods, businesses (places), roads, intersections, and reviews. Relationships connect these nodes to reflect real-world connections, such as neighborhoods containing places, places having reviews, and roads linking intersections. All node attributes, including review texts, ratings, geographic coordinates, and other metadata, are stored directly in the graph, enabling the agent to traverse and retrieve contextual information efficiently.
+
+### Dataset Preparation Workflow
+
+1. **Export the Neo4j graph** using:
+   ```bash
+   python export_neo4j_to_heterodata.py
+   ```
+   This script extracts nodes, relationships, and attributes from Neo4j, converting them into a **PyG HeteroData** object saved as `neo4j_heterodata.pt`.
+
+2. **Build the review embedding index:**
+   The agent reads review texts directly from the `Review` nodes in the graph for RAG-based enrichment and reasoning.
+   ```bash
+   python build_review_chromadb.py
+   ```
+   Loads `neo4j_heterodata.pt`, extracts all review texts from the graph, generates embeddings using a BERT-based model, and stores them in `VECTOR_DB_DIR` for efficient semantic retrieval.
+
+> **Note:** All review texts are stored within the graph; no external CSV is needed. The embeddings are generated automatically for retrieval.
 
 ---
