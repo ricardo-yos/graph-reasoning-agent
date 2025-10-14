@@ -115,3 +115,115 @@ It contains multiple types of nodes representing neighborhoods, businesses (plac
 > **Note:** All review texts are stored within the graph; no external CSV is needed. The embeddings are generated automatically for retrieval.
 
 ---
+
+## HeteroData Structure
+
+The `neo4j_heterodata.pt` file is a PyTorch Geometric **HeteroData** object that represents the full graph exported from Neo4j.  
+It contains multiple node types, edge types, and attributes, allowing flexible graph traversal and reasoning.
+
+### Node Types and Attributes
+| Node Type        | Description                                                                      | Main Attributes                                                                                                                                                                                                                  |
+| ---------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Neighborhood** | Represents a geographic district of Santo André.                                 | `name`, `area_km2`, `centroid_lat`, `centroid_lon`, `neighborhood_id`, `average_monthly_income`, `literacy_rate`, `population_with_income`, `total_literate_population`, `total_private_households`, `total_resident_population` |
+| **Place**        | Represents a business related to pet care (e.g., pet shops, veterinary clinics). | `name`, `place_id`, `rating`, `type` (`'pet_store'` or `'veterinary_care'`), `latitude`, `longitude`, `num_reviews`                                                                                                              |
+| **Road**         | Represents a street segment connecting intersections.                            | `name`, `highway`, `oneway`, `length`, `maxspeed`, `osmid`, `road_id`, `u`, `v`                                                                                                                                                  |
+| **Intersection** | Represents a physical road intersection.                                         | `highway`, `osmid`, `lat`, `lon`, `street_count`                                                                                                                                                                                 |
+| **Review**       | Represents a user review collected from Google Places.                           | `rating`, `review_id`, `author`, `text`, `date`                                                                                                                                                                                  |
+
+### Edge Types
+Each relation is represented in PyG using a triplet of node types `(src_type, relation_type, dst_type)`.
+
+| Edge Type                              | Description                                          |
+| -------------------------------------- | ---------------------------------------------------- |
+| `(Neighborhood, "CONTAINS", Place)`    | Connects neighborhoods to the places within them.    |
+| `(Neighborhood, "CONTAINS", Road)`     | Connects neighborhoods to their road segments.       |
+| `(Road, "CONTAINS", Place)`            | Links roads to places located along them.            |
+| `(Intersection, "ROAD", Intersection)` | Connects intersections that belong to the same road. |
+| `(Place, "NEAR", Intersection)`        | Links each place to its nearest intersection.        |
+| `(Place, "HAS_REVIEW", Review)`        | Connects a place to its user reviews.                |
+
+### Semantic Representation in HeteroData
+
+In this project, the HeteroData object from PyTorch Geometric (PyG) is not used for numerical tensor computation, but as a **semantic graph structure** representing entities and their relationships within the city of Santo André’s pet care ecosystem.
+
+Each node type (e.g., `Place`, `Review`, `Neighborhood`) corresponds to a real-world entity. Instead of dense feature tensors, the `.x` attribute stores textual or contextual information, such as names, reviews, ratings, or other metadata. This allows the graph to capture rich semantic information while keeping the flexibility of PyG’s heterogeneous graph structure.
+
+#### Node Types and Example Data
+
+- **Neighborhood**  
+  Represents a geographic district and its key attributes.
+  ```python
+  data["Neighborhood"].x = [
+      {"name": "Vila Assunção", "area_km2": 1.5, "centroid_lat": -23.6698, "centroid_lon": -46.5270}
+  ]
+  ```
+
+- **Place**  
+  Represents a business related to pet care.
+  ```python
+  data["Place"].x = [
+      {"name": "Pet Shop do Bairro", "type": "pet_store", "rating": 4.6},
+      {"name": "Clínica Veterinária Santo André", "type": "veterinary_care", "rating": 4.9},
+  ]
+  ```
+
+- **Review**  
+  Represents a user review with textual content and rating.
+  ```python
+  data["Review"].x = [
+      {"text": "Excelente atendimento!", "rating": 5, "author": "Maria"},
+      {"text": "Demorou muito o atendimento.", "rating": 2, "author": "Paulo"},
+  ]
+  ```
+
+Key points:
+
+- `.x` holds **descriptive attributes** (names, types, ratings, texts, etc.) rather than numeric vectors.
+- Relations (e.g., `data["Place", "HAS_REVIEW", "Review"].edge_index`) define **how entities are connected**.
+- This structure allows agents to **traverse and reason over interconnected data**, enabling context expansion and RAG-based retrieval over graph-linked reviews.
+
+By treating **HeteroData as a semantic substrate**, the Graph Navigator Agent can perform **conceptual reasoning** and **contextual expansion**` instead of pure numeric graph processing.
+
+### Graph Expansion Flow in HeteroData
+
+In the **Graph Reasoning Agent**, graph exploration starts from a **root node** — usually a `Neighborhood` — and expands iteratively to retrieve related entities such as `Places`, `Reviews`, `Roads`, and `Intersections`.  
+
+This process allows the **Graph Navigator Agent** to traverse the **semantic graph** and enrich the reasoning context with meaningful, text-linked information.
+
+#### 1. Starting from a Neighborhood
+
+Each `Neighborhood` node represents a geographic region of Santo André, with demographic attributes (e.g., income, literacy rate, population).  
+Expansion begins by identifying which entities are **contained within** that neighborhood.
+
+```python
+data["Neighborhood"].x = [
+    {"name": "Vila Pires", "average_monthly_income": 3200, "population": 25000},
+]
+```
+
+#### 2. Expanding to Places
+
+From a given `Neighborhood`, the agent expands through the edge `(Neighborhood)-[:CONTAINS]->(Place)` to retrieve all **businesses** located in that area.
+
+```python
+data["Place"].x = [
+    {"name": "Pet Shop Vila Pires", "type": "pet_store", "rating": 4.7},
+    {"name": "Clínica Vet Pires", "type": "veterinary_care", "rating": 4.9},
+]
+```
+
+#### 3. Expanding to Reviews
+
+Each `Place` node connects to one or more `Review` nodes via `(Place)-[:HAS_REVIEW]->(Review)`. This allows the agent to retrieve the **textual feedback** related to each business.
+
+```python
+data["Review"].x = [
+    {"text": "Excelente atendimento e cuidado com meu cachorro!", "rating": 5},
+    {"text": "Preço justo e profissionais atenciosos.", "rating": 4},
+]
+```
+
+#### 4. Connecting to Physical Context
+Optionally, the agent can also expand to `Road` and `Intersection` nodes, building a **spatial context** around places and enabling richer reasoning.
+
+---
