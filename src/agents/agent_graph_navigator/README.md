@@ -227,3 +227,65 @@ data["Review"].x = [
 Optionally, the agent can also expand to `Road` and `Intersection` nodes, building a **spatial context** around places and enabling richer reasoning.
 
 ---
+
+## Usage
+
+This section explains how to run the **Graph Navigator Tester**, a diagnostic script designed to validate the semantic navigation process over the `HeteroData` structure.
+
+It allows developers to simulate how the Graph Navigator Agent expands nodes and explores relationships among `Neighborhood`, `Place`, and `Review` entities.
+
+### 1. Edit the question
+Open the file `scripts/graph_navigator_tester.py` and edit the question directly in the script:
+
+```python
+# --------------------------------------------------------
+# Test block: run only if this file is executed directly
+# --------------------------------------------------------
+
+if __name__ == "__main__":
+    # Load environment variables
+    load_env()
+
+    # Initialize the LLM manager and GraphNavigatorAgent
+    llm_manager = LLMManager()
+    agent = GraphNavigatorAgent(llm=llm_manager)
+
+    # Test pipeline with a single question
+    question = "Quais os petshops no bairro Jardim possuem elogios no atendimento?"
+    run_graph_navigator_pipeline(question, agent)
+```
+
+### 2. Run the script
+From the `src` directory, execute the script:
+
+```python
+cd src
+python agents/agent_graph_navigator/graph_navigator_tester.py
+```
+
+### 3. See the results
+
+Once executed, the script prints the step-by-step navigation process:
+
+```python
+[1 - Extracted Nodes]
+{'Neighborhood': [{'name': 'Jardim'}], 'Place': [{'type': 'pet_store'}], 'RAG': [{'text': 'petshops'}, {'text': 'elogios no atendimento'}]}
+
+[2 - Expanded Nodes]
+{ ... }
+
+[3 - RAG Reviews]
+{ ... }
+
+[4 - LLM Answer]
+Os petshops no bairro Jardim que possuem elogios no atendimento são:
+
+- Xodocão Pet Store: equipe de estética canina muito competente e atendimento muito bom.
+- Pets Onaga - Unidade Jardim: atendimento muito atencioso e prestativo, bons preços e produtos completos.
+- Pet Center Jardins: equipe totalmente profissional e atendimento excelente.
+- Garden Pet Shop: atendimento excelente e cuidado com os pets.
+- Petz: serviço de banho e tosa e autoatendimento disponíveis.
+```
+The output shows each **expansion layer** — from neighborhoods to places to reviews — demonstrating how the agent traverses the **semantic relationships** stored in the `HeteroData` structure.
+
+---
