@@ -235,7 +235,7 @@ This section explains how to run the **Graph Navigator Tester**, a diagnostic sc
 It allows developers to simulate how the Graph Navigator Agent expands nodes and explores relationships among `Neighborhood`, `Place`, and `Review` entities.
 
 ### 1. Edit the question
-Open the file `scripts/graph_navigator_tester.py` and edit the question directly in the script:
+Open the file `agent_graph_navigator/graph_navigator_tester.py` and edit the question directly in the script:
 
 ```python
 # --------------------------------------------------------
@@ -287,5 +287,81 @@ Os petshops no bairro Jardim que possuem elogios no atendimento são:
 - Petz: serviço de banho e tosa e autoatendimento disponíveis.
 ```
 The output shows each **expansion layer** — from neighborhoods to places to reviews — demonstrating how the agent traverses the **semantic relationships** stored in the `HeteroData` structure.
+
+---
+
+## Architecture
+The **Graph Navigator Agent** follows a modular architecture where each component is responsible for a specific stage of the semantic reasoning pipeline.
+
+This design enables explainability and traceability of every decision, from question parsing to final answer generation.
+
+### System Overview
+
+   ```mermaid
+   flowchart TD
+       A[User Question] --> B[Question Parser]
+       B --> C[Filter Nodes]
+       C --> D[Node Relations Filter]
+       D --> E[RAG Reviews]
+       E --> F[Graph Answer]
+   ```
+
+This flow shows how a natural language question is progressively decomposed, filtered, expanded, and finally answered through graph-based reasoning.
+
+1. `question_parser.py`
+   This module interprets the **user’s natural language question** and extracts semantic entities (nodes) and intent clues.
+   - **Input**: Text question
+   - **Output**: A dictionary with structured entities, such as:
+
+   ```python
+   {
+       "Neighborhood": [{"name": "Jardim"}],
+       "Place": [{"type": "pet_store"}],
+       "RAG": [{"text": "elogios no atendimento"}]
+   }
+   ```
+   - **Purpose**: Identify what entities the user refers to and what type of relationship or attribute is being queried.
+
+2. `filter_nodes.py`
+   Responsible for selecting the **matching nodes** within the `HeteroData` graph based on the extracted entities.
+   - **Input**: Parsed nodes from the question
+   - **Output**: Filtered graph subset containing only relevant nodes
+   - **Purpose**: Efficiently narrow the graph to only those entities related to the query (e.g., specific neighborhoods or business types).
+
+3. `node_relations_filter.py`
+   After node filtering, this module traverses **semantic relationships** in the graph to expand relevant entities.
+   - **Input**: Filtered nodes and the relation mapping
+   - **Output**: Expanded graph data with related nodes (e.g., places contained in a neighborhood)
+   - **Purpose**: Build the **semantic context** around the entities by following their edges (`CONTAINS`, `HAS_REVIEW`, `NEAR`, etc.).
+
+4. `rag_reviews.py`
+   Implements **Retrieval-Augmented Generation (RAG)** for reviews.
+   It searches, ranks, and selects the most relevant reviews associated with the expanded nodes.
+   - **Input**: Expanded nodes and question context
+   - **Output**: A set of reviews containing semantic matches to the question intent
+   - **Purpose**: Provide the LLM with meaningful textual evidence for answer generation.
+
+5. `graph_answer.py`
+   The final stage, where the **LLM (Large Language Model)** synthesizes the results and generates a coherent natural-language answer.
+   - **Input**: Relevant reviews, entities, and context
+   - **Output**: Human-readable answer (e.g., list of places with positive feedback)
+   - **Purpose**: Combine retrieved information with reasoning to produce a natural and context-aware response.
+
+### Summary of the Flow
+
+| Step | Module                     | Description                                      | Input              | Output                  |
+| ---- | -------------------------- | ------------------------------------------------ | ------------------ | ----------------------- |
+| 1    | `question_parser.py`       | Extracts entities and intent from user question  | Question text      | Structured entities     |
+| 2    | `filter_nodes.py`          | Filters nodes in the graph by extracted entities | Entities           | Relevant nodes          |
+| 3    | `node_relations_filter.py` | Expands nodes via semantic relationships         | Filtered nodes     | Expanded nodes          |
+| 4    | `rag_reviews.py`           | Retrieves most relevant reviews                  | Expanded nodes     | Ranked reviews          |
+| 5    | `graph_answer.py`          | Generates the final answer                       | Reviews + entities | Natural language answer |
+
+### Neuro-Symbolic Integration
+
+This architecture exemplifies a **Neuro-Symbolic AI approach** — combining symbolic reasoning from the structured graph (relations, entities, and attributes) with neural understanding from the LLM.
+
+The graph provides **explicit structure and relationships**, while the LLM interprets and summarizes the implicit semantics in textual reviews.
+Together, they enable contextual reasoning that goes beyond pure data retrieval or text generation — allowing the agent to infer meaningful, semantically grounded answers.
 
 ---
