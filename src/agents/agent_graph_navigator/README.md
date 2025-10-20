@@ -365,3 +365,26 @@ The graph provides **explicit structure and relationships**, while the LLM inter
 Together, they enable contextual reasoning that goes beyond pure data retrieval or text generation — allowing the agent to infer meaningful, semantically grounded answers.
 
 ---
+
+## Key Takeaways and Limitations
+
+### Key Takeaways
+
+- The **Graph Navigator Agent** integrates symbolic reasoning (graph traversal) with neural understanding (LLM), demonstrating a **neuro-symbolic approach** to question answering.
+- The pipeline combines **structured graph exploration** with **RAG-based text retrieval**, allowing contextual answers that connect entities such as neighborhoods, places, and reviews.
+- Each processing stage — from **question parsing** to **RAG retrieval** — contributes to building a semantically grounded reasoning chain.
+- The system operates as a **proof of concept**, showing how a local knowledge graph (HeteroData) can be semantically navigated using natural language queries.
+- The project provides a **foundation for more advanced city-level reasoning systems**, integrating NLP, knowledge graphs, and LLMs for urban intelligence and semantic search.
+
+### Limitations
+
+While the **Graph Navigator Agent** demonstrates a structured approach to semantic reasoning over a city-level knowledge graph, it still faces several important limitations:
+
+- **Incomplete attribute extraction** – During the Question Parser stage, the LLM may fail to extract all relevant attributes for each node (e.g., missing the type or name field).
+- **RAG text extraction errors** – When generating the RAG text context, the LLM can misinterpret the intent or fail to produce accurate retrieval cues, leading to confusion in later reasoning steps.
+- **No spatial reasoning** – The agent does not perform real spatial or geographic searches. It only navigates relationships defined within the HeteroData graph structure.
+- **Limited to known nodes and attributes** – If a question refers to entities or attributes not represented in the graph schema (e.g., “eventos para adoção”), the agent will not find a valid path or answer.
+- **Possible hallucinations** – Both during parsing and final response generation, the LLM may produce fabricated or mismatched information, especially if similar review embeddings exist in the same vector space.
+- **Static graph context** – Updates in data (e.g., new reviews or businesses) require graph regeneration; the agent does not dynamically synchronize with external sources.
+
+---
