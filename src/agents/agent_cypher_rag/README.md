@@ -254,10 +254,15 @@ The **RAG Cypher Agent** integrates multiple components to convert natural langu
    - Updates `final_response`.
 
 ### Simplified Flow
-```python
-User Question
-↓
-Intent Detection → Cypher Matching → Cypher Generation → Cypher Correction → Neo4j Execution → Answer Generation → Final Response
+```mermaid
+flowchart TD
+    A[User Question] --> B[Intent Detection]
+    B --> C[Cypher Matching]
+    C --> D[Cypher Generation]
+    D --> E[Cypher Correction]
+    E --> F[Neo4j Execution]
+    F --> G[Answer Generation]
+    G --> H[Final Response]
 ```
 
 ### Notes
