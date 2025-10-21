@@ -38,3 +38,145 @@ The **master agent** ensures that each question is routed to the appropriate sub
 - Anyone interested in domain-specific AI applications
 
 ---
+
+## Project Structure
+
+```bash
+graph-reasoning-agent/
+│
+├── data/                                # All datasets used by the project
+│   ├── fuzzy/                           # Fuzzy matching datasets for text normalization
+│   │   ├── neighborhood_names.csv       # List of neighborhood name variations
+│   │   ├── places_names.csv             # List of place name variations
+│   │   └── street_names.csv             # List of street name variations
+│   │
+│   ├── interim/                         # Intermediate datasets generated during processing
+│   │   └── santo_andre_sidra_ibge/      # SIDRA/IBGE demographic data for Santo André
+│   │       ├── failed_downloads.json    # Log of datasets that failed to download from SIDRA
+│   │       └── neighborhoods_sidra_long.csv  # Long-format version of IBGE data before transformation
+│   │
+│   ├── processed/                       # Final cleaned and processed datasets
+│   │   ├── google_places/               # Processed data from Google Places API
+│   │   │   ├── places_reviews.geojson   # Geospatial dataset of business reviews
+│   │   │   └── reviews_processed.csv    # Cleaned and preprocessed review texts
+│   │   ├── santo_andre_osm/             # Data extracted from OpenStreetMap (OSM)
+│   │   │   └── santo_andre_osm_layers.gpkg  # OSM spatial layers stored in GeoPackage format
+│   │   ├── santo_andre_sidra_ibge/      # Processed IBGE (SIDRA) data
+│   │   │   └── neighborhoods_sidra_wide.csv # Wide-format version of IBGE neighborhood data
+│   │   └── santo_andre_siga/            # Data from Santo André’s SIGA (geospatial management system)
+│   │       ├── neighborhoods_processed.csv   # Cleaned SIGA neighborhood data
+│   │       └── neighborhoods_processed.geojson # SIGA neighborhood data in geospatial format
+│   │
+│   ├── rag/                             # Data related to RAG (Retrieval-Augmented Generation) components
+│   │   ├── rag_base_queries.csv         # Base query templates for RAG system
+│   │   ├── rag_questions_cypher.csv     # RAG questions mapped to Cypher queries
+│   │   └── rag_questions_cypher.json    # JSON version of RAG–Cypher question mappings
+│   │
+│   └── raw/                             # Raw data before any transformation
+│       ├── google_places/               # Unprocessed data collected from Google Places API
+│       │   ├── places_reviews.json      # Raw JSON data of business reviews
+│       │   └── reviews.csv              # Tabular version of the reviews
+│       │
+│       ├── santo_andre_sidra_ibge/      # Raw demographic data from SIDRA/IBGE for each census sector
+│       │   ├── 3547809001/              # Individual census sector folders (one per neighborhood region)
+│       │   ├── 3547809002/
+│       │   ├── 3547809003/
+│       │   ├── 3547809004/
+│       │   ├── 3547809005/
+│       │   ├── ...                      # (Several other census sectors omitted for brevity)
+│       │   ├── 3547809132/
+│       │   ├── 3547809500/
+│       │   └── Bairro em Município - Santo André (SP).xlsx  # Summary spreadsheet downloaded from SIDRA
+│       │
+│       └── santo_andre_siga/            # Raw files from Santo André’s municipal GIS (SIGA)
+│           └── SIGA_LIM_BAIRROS_OFICIAL/
+│               └── SIGA_LIM_BAIRROS_OFICIALPolygon.shp  # Official shapefile with neighborhood boundaries
+│
+├── models/
+│   └── neo4j_heterodata.pt              # Trained PyTorch model for Neo4j heterogeneous graph embeddings
+│
+├── src/                                 # Source code for the entire project
+│   ├── agents/                          # Intelligent agents for reasoning, querying, and orchestration
+│   │   ├── agent_cypher_rag/            # RAG-based Cypher query agent
+│   │   │   ├── operations/              # Core operations for Cypher generation and interpretation
+│   │   │   │   ├── cypher_answer_generation.py # Generates answers using Cypher and retrieved data
+│   │   │   │   ├── cypher_correction.py        # Fixes incorrect Cypher queries
+│   │   │   │   ├── cypher_generation.py        # Builds Cypher queries based on intent and entities
+│   │   │   │   ├── intent_detection.py         # Detects user intent from natural language input
+│   │   │   │   └── match_cypher.py             # Matches natural language questions to stored Cypher templates
+│   │   │   ├── rag_cypher_tester.py      # Script to test Cypher generation with RAG
+│   │   │   ├── rag_cypher.py             # Main RAG–Cypher agent implementation
+│   │   │   ├── README.md                 # Documentation for this agent
+│   │   │   └── scripts/                  # Utility scripts for data prep and debugging
+│   │   │       ├── build_rag_vector_db.py      # Builds ChromaDB vector database for RAG
+│   │   │       ├── chroma_tester.py            # Tests vector retrieval performance
+│   │   │       ├── convert_csv_to_json.py      # Converts CSV data to JSON format for RAG use
+│   │   │       ├── expand_rag_questions.py     # Expands question set for RAG training and evaluation
+│   │   │       └── generate_fuzzy_datasets.py  # Generates fuzzy text matching datasets
+│   │   │
+│   │   ├── agent_graph_navigator/       # Graph navigation and reasoning agent
+│   │   │   ├── graph_navigator_tester.py # Tests graph traversal and node querying
+│   │   │   ├── graph_navigator.py        # Main graph navigation logic
+│   │   │   ├── operations/               # Core operations used by the graph navigator
+│   │   │   │   ├── filter_nodes.py       # Filters graph nodes by attributes and relationships
+│   │   │   │   ├── graph_answer.py       # Generates structured answers from graph data
+│   │   │   │   ├── node_relations_filter.py # Filters node connections and relationships
+│   │   │   │   ├── question_parser.py    # Parses natural language questions into graph operations
+│   │   │   │   └── rag_reviews.py        # Handles RAG queries over customer review data
+│   │   │   ├── README.md                 # Documentation for the graph navigator agent
+│   │   │   └── scripts/                  # Helper scripts for graph data preparation
+│   │   │       ├── build_review_chromadb.py    # Builds a ChromaDB from review embeddings
+│   │   │       └── export_neo4j_to_heterodata.py # Exports Neo4j data into a heterogeneous format
+│   │   │
+│   │   └── agent_orchestrator/          # Coordinates multiple agents to perform reasoning tasks
+│   │       ├── agent_state.py           # Tracks and updates the current reasoning state
+│   │       └── build_agent.py           # Constructs and initializes agent pipelines
+│   │
+│   ├── cli_agent.py                     # Command-line interface to interact with agents
+│   │
+│   ├── config/                          # Configuration files and environment utilities
+│   │   ├── constants.py                 # Global constants and default parameters
+│   │   ├── env_loader.py                # Loads environment variables from .env or system settings
+│   │   └── paths.py                     # Centralized management of project file paths
+│   │
+│   ├── data_processing/                 # Scripts for cleaning and transforming raw datasets
+│   │   ├── google_places/               # Processing scripts for Google Places data
+│   │   │   ├── convert_places_json_to_geojson.py # Converts raw JSON to GeoJSON format
+│   │   │   └── prepare_reviews_for_neo4j.py      # Prepares reviews for Neo4j graph import
+│   │   ├── ibge/                        # Data processing scripts for IBGE/SIDRA datasets
+│   │   │   ├── convert_sidra_long_to_wide.py     # Converts long-format IBGE data to wide-format
+│   │   │   ├── fetch_sidra_totals.py            # Fetches aggregated totals from SIDRA API
+│   │   │   ├── retry_failed_downloads.py         # Retries failed SIDRA downloads
+│   │   │   └── sidra_downloader.py               # Downloads census data from IBGE SIDRA API
+│   │   ├── osm/                         # Processing scripts for OpenStreetMap data
+│   │   │   └── extract_osm_layers.py             # Extracts and cleans relevant OSM spatial layers
+│   │   └── siga/                        # Processing scripts for Santo André’s SIGA datasets
+│   │       └── neighborhoods_pipeline.py         # Full pipeline for SIGA neighborhood data processing
+│   │
+│   ├── graph/                           # Graph-related modules for Neo4j integration
+│   │   ├── client_tester.py             # Tests connection and queries to Neo4j
+│   │   ├── neo4j/                       # Neo4j database connection and data handling logic
+│   │   │   ├── client.py                # Manages Neo4j client sessions
+│   │   │   ├── connector.py             # Handles authentication and driver setup
+│   │   │   ├── insert_nodes.py          # Inserts nodes into the Neo4j database
+│   │   │   ├── insert_relationships.py  # Creates relationships between nodes
+│   │   │   └── neo4j_deletions.py       # Deletes nodes or relationships from Neo4j
+│   │   ├── neo4j_pipeline.py            # End-to-end pipeline for building and updating the graph
+│   │   ├── README.md                    # Documentation for graph components
+│   │   └── spatial/                     # Spatial operations for geographic enrichment
+│   │       └── assign_spatial_attributes.py # Assigns geospatial metadata to graph nodes
+│   │
+│   ├── llm/                             # Modules for Large Language Model (LLM) management
+│   │   ├── llm_manager.py               # Wrapper for interacting with LLM APIs or local models
+│   │   └── llm_tester.py                # Tests LLM responses and configurations
+│   │
+│   └── utils/                           # Utility functions and helpers
+│       └── logger.py                    # Configurable logging setup for all modules
+│
+├── .gitignore                           # Specifies which files/folders Git should ignore
+├── LICENSE                              # Open-source license for this project
+├── README.md                            # Project documentation and usage guide
+└── requirements.txt                     # List of Python dependencies required to run the project
+```
+
+---
