@@ -187,7 +187,6 @@ The system follows a **Neuro-Symbolic AI architecture**, combining **neural inte
 This hybrid approach enables the system to interpret natural language queries semantically, reason over structured graph data, and generate context-aware insights about neighborhoods, businesses, and reviews in Santo André.
 
 ### Knowledge Graph
-
 The system is built on a **heterogeneous semantic graph** that integrates multiple data layers — neighborhoods, businesses, roads, intersections, and reviews.
 Each node type represents a distinct entity, and the edges capture their semantic relationships.
 
@@ -209,7 +208,6 @@ Each node type represents a distinct entity, and the edges capture their semanti
 This structure enables semantic and relational reasoning over neighborhoods, pet businesses, and their customer reviews — supporting questions such as *Which pet shops in the Jardim neighborhood receive the most praise for customer service?*
 
 ### Graph Environments
-
 The project employs two complementary graph environments:
 
 - **Neo4j Graph (Symbolic Layer)** — stores structured knowledge; primarily used for **reference queries** and example retrieval by the RAG Cypher Agent. It provides a symbolic backbone for reasoning but is not the main runtime graph.
@@ -252,5 +250,68 @@ This combined approach ensures that results are both semantically rich and expla
   - Filter nodes by attributes and context
   - Retrieve related reviews through RAG
 - **Reference**: See [agent_graph_navigator/README.md](src/agents/agent_graph_navigator/README.md).
+
+---
+
+## Prerequisites & Setup
+
+### Neo4j Account & Setup
+The project **requires a running Neo4j instance** for the symbolic reasoning layer. You can set it up in one of two ways:
+
+- **Neo4j AuraDB (cloud)**: Create a free account and database at [Neo4j AuraDB](https://neo4j.com/product/auradb/) and note your connection credentials (URI, username, password).  
+
+- **Neo4j Desktop (local)**: Download and install [Neo4j Desktop](https://neo4j.com/download/), then create and start a new local database.
+
+Make sure your database contains the **nodes and relationships** defined in the project’s knowledge graph model before running any agents.
+
+### Python & Virtual Environment
+You need **Python 3.10 or newer** installed. It’s strongly recommended to use a **virtual environment** to isolate dependencies.
+
+<details><summary>Linux / macOS</summary>
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+</details><details><summary>Windows (PowerShell)</summary>
+
+```bash
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+</details>
+
+### Install Dependencies
+After activating your environment, install all required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+This will include core libraries such as:
+- `neo4j` — for graph database integration
+- `torch`, `torch-geometric` — for heterogeneous graph processing
+- `openai` or `groq` — for LLM-based reasoning and Cypher generation
+
+### Environment Variables
+Create a `.env` file in the **project root** to store API keys and credentials:
+
+```bash
+# Neo4j credentials
+NEO4J_URI=<your_neo4j_bolt_uri>
+NEO4J_USER=<your_neo4j_username>
+NEO4J_PASSWORD=<your_neo4j_password>
+
+# LLM credentials (Groq)
+GROQ_API_KEY=<your_api_key_here>
+```
+
+#### Variable descriptions:
+- `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD`: Required for connecting to your Neo4j database.  
+- `GROQ_API_KEY`: Required by the `LLMManager` to access Groq’s LLM for Cypher generation and query reasoning.
+
+> **Important**: Keep your .env file private. Never commit it to GitHub or share it publicly.
 
 ---
